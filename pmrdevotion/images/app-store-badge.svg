@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="188" height="60" viewBox="0 0 188 60" role="img" aria-labelledby="title desc">
+  <title id="title">PMR Devotion App Store placeholder badge</title>
+  <desc id="desc">A placeholder badge indicating PMR Devotion will be available on iOS.</desc>
+  <rect width="188" height="60" rx="30" fill="#0D0D0D" stroke="#C8A951"/>
+  <text x="20" y="19" fill="#B8B0A8" font-family="Inter, Arial, sans-serif" font-size="9" letter-spacing="1.8">DOWNLOAD ON</text>
+  <text x="20" y="42" fill="#FAF8F5" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600">the App Store</text>
+</svg>

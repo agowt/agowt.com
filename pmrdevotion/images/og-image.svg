@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">PMR Devotion Open Graph image</title>
+  <desc id="desc">Branded preview image for PMR Devotion.</desc>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="65%" r="50%">
+      <stop offset="0%" stop-color="#C8A951" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="#C8A951" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0D0D0D"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="86" y="86" width="1028" height="458" rx="28" fill="#1A1A1A" stroke="#C8A951" stroke-opacity="0.35"/>
+  <text x="140" y="240" fill="#C8A951" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="4">A SYSTEM OF DEVOTION</text>
+  <text x="140" y="330" fill="#FAF8F5" font-family="Georgia, serif" font-size="72" font-weight="700">PMR Devotion</text>
+  <text x="140" y="402" fill="#B8B0A8" font-family="Inter, Arial, sans-serif" font-size="34">Pray. Meditate. Repeat.</text>
+  <text x="140" y="464" fill="#B8B0A8" font-family="Inter, Arial, sans-serif" font-size="28">Scripture-rooted prayer, meditation, and pattern awareness.</text>
+</svg>
