@@ -117,11 +117,13 @@
 
 .mobile-nav-panel {
   position: fixed;
-  inset: 64px 0 0;
+  top: 64px;
+  left: 0;
+  right: 0;
   z-index: 999;
   background: #0D0D0D;
   border-top: 1px solid var(--divider);
-  overflow-y: auto;
+  border-bottom: 1px solid var(--divider);
 }
 
 .mobile-nav-panel__inner {
@@ -622,6 +624,4 @@
   color: var(--text-secondary);
 }
 
-body.is-nav-open {
-  overflow: hidden;
-}
+/* body scroll remains free when mobile nav is open */
