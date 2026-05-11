@@ -24,7 +24,7 @@
     --diff-del-text: #f85149;
     
     --diff-empty: #1e1e1e;
-    --diff-line-num: #858585; /* Exact VS Code Dark+ line number color */
+    --diff-line-num: #ffffff; /* DIAGNOSTIC TEST: Pure white line numbers */
     
     --radius-lg: 12px;
     --radius-md: 8px;
