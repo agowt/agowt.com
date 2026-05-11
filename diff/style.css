@@ -76,12 +76,12 @@ body {
 }
 
 /* Monospace strict font */
-.d2h-file-diff * {
+.d2h-wrapper * {
     font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace !important;
 }
 
 /* Document Font (Sans-Serif) Toggle */
-.results-section.font-sans .d2h-file-diff * {
+.results-section.font-sans .d2h-wrapper * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
@@ -358,6 +358,19 @@ textarea:focus {
     line-height: 1.5 !important;
     padding-top: 1px !important;
     padding-bottom: 1px !important;
+}
+
+/* Hunk Header Styling (@@ -1,27 +1,27 @@) */
+.d2h-info .d2h-code-line, 
+.d2h-info .d2h-code-side-line {
+    background-color: var(--diff-empty) !important;
+    border-radius: 4px;
+    padding: 2px 8px !important;
+    margin: 8px 0;
+    display: inline-block;
+    color: var(--diff-line-num) !important;
+    font-size: 12px !important;
+    font-family: ui-monospace, Menlo, Monaco, monospace !important;
 }
 
 .wrap-text .d2h-code-line, 
