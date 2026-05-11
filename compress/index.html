@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy-First Image Optimizer | agowt.com</title>
+    <meta name="description" content="A blazing fast, privacy-first local image compressor. Optimize your images securely without uploading them to any server.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="ph-fill ph-aperture"></i>
+                <h1>agowt<span>compress</span></h1>
+            </div>
+            <p>100% Local Image Optimization. Zero Server Uploads. Absolute Privacy.</p>
+        </header>
+
+        <div class="glass-panel main-panel">
+            <section class="upload-section">
+                <div class="dropzone" id="dropzone">
+                    <input type="file" id="fileInput" multiple accept="image/png, image/jpeg, image/webp">
+                    <div class="dropzone-content">
+                        <i class="ph ph-upload-simple upload-icon"></i>
+                        <h3>Drag & Drop your images here</h3>
+                        <p>or <span class="text-highlight">click to browse</span></p>
+                        <span class="file-limits">Supports PNG, JPEG, WebP. No file size limits.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <div class="settings-group">
+                    <label for="qualitySlider">
+                        <span>Compression Quality</span>
+                        <span id="qualityValue" class="value-badge">80%</span>
+                    </label>
+                    <input type="range" id="qualitySlider" min="1" max="100" value="80" class="styled-slider">
+                </div>
+                
+                <div class="settings-group">
+                    <label for="formatSelect">Output Format</label>
+                    <div class="select-wrapper">
+                        <select id="formatSelect">
+                            <option value="auto">Keep Original Format</option>
+                            <option value="image/webp">WebP (Best Compression)</option>
+                            <option value="image/jpeg">JPEG</option>
+                            <option value="image/png">PNG (Lossless)</option>
+                        </select>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label for="maxWidthInput">Max Width (Optional)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="maxWidthInput" placeholder="e.g. 1920" min="1">
+                        <span class="unit">px</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar hidden" id="actionBar">
+            <div class="stats">
+                <span id="totalSavedBadge" class="badge badge-success">Saved: 0 MB</span>
+            </div>
+            <div class="actions">
+                <button id="clearBtn" class="btn btn-secondary">
+                    <i class="ph ph-trash"></i> Clear All
+                </button>
+                <button id="downloadAllBtn" class="btn btn-primary">
+                    <i class="ph ph-download-simple"></i> Download All (ZIP)
+                </button>
+            </div>
+        </div>
+
+        <section class="results-section hidden" id="resultsSection">
+            <!-- Results will be injected here via JS -->
+            <div class="results-grid" id="resultsGrid"></div>
+        </section>
+    </main>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="script.min.js"></script>
+</body>
+</html>

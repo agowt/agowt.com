@@ -1,0 +1,13 @@
+# Internal Business Strategy & Plans
+implementation_plan_uw/
+
+# Source Code Protection (Only push obfuscated code)
+compress/script.js
+
+# Node
+node_modules/
+package-lock.json
+package.json
+
+# Mac OS
+.DS_Store
