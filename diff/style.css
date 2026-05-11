@@ -24,6 +24,7 @@
     --diff-del-text: #f85149;
     
     --diff-empty: #1e1e1e;
+    --diff-line-num: #b0b0b0; /* Lighter grey for better readability in dark mode */
     
     --radius-lg: 12px;
     --radius-md: 8px;
@@ -57,6 +58,7 @@
     --diff-del-text: #cf222e;
     
     --diff-empty: #f6f8fa;
+    --diff-line-num: #6a737d;
 }
 
 * {
@@ -356,7 +358,7 @@ textarea:focus {
 .d2h-info,
 .d2h-diff-tbody > tr > td.d2h-code-linenumber,
 .d2h-diff-tbody > tr > td.d2h-info {
-    color: var(--text-muted) !important;
+    color: var(--diff-line-num) !important;
     border: none !important;
     background-color: transparent !important;
     box-shadow: none !important;
