@@ -352,10 +352,14 @@ textarea:focus {
     color: var(--text-muted) !important;
 }
 
-.d2h-code-linenumber {
+.d2h-code-linenumber,
+.d2h-info,
+.d2h-diff-tbody > tr > td.d2h-code-linenumber,
+.d2h-diff-tbody > tr > td.d2h-info {
     color: var(--text-muted) !important;
     border: none !important;
     background-color: transparent !important;
+    box-shadow: none !important;
     padding-right: 1.5rem !important;
 }
 
@@ -369,7 +373,7 @@ textarea:focus {
     background-color: var(--diff-ins-bg) !important;
     border-color: var(--diff-ins-bg-strong) !important;
 }
-.d2h-ins .d2h-code-line-text, .d2h-ins .d2h-code-line-prefix {
+.d2h-ins .d2h-code-line-ctn, .d2h-ins .d2h-code-line-prefix {
     color: var(--text-primary) !important;
 }
 
@@ -378,18 +382,18 @@ textarea:focus {
     background-color: var(--diff-del-bg) !important;
     border-color: var(--diff-del-bg-strong) !important;
 }
-.d2h-del .d2h-code-line-text, .d2h-del .d2h-code-line-prefix {
+.d2h-del .d2h-code-line-ctn, .d2h-del .d2h-code-line-prefix {
     color: var(--text-primary) !important;
 }
 
 /* Intra-line highlights (The specific changed words) */
-.d2h-ins .d2h-code-line-text ins {
+.d2h-ins .d2h-code-line-ctn ins, .d2h-ins ins {
     background-color: var(--diff-ins-bg-strong) !important;
     color: var(--text-primary) !important; /* Perfect contrast */
     text-decoration: none;
     border-radius: 2px;
 }
-.d2h-del .d2h-code-line-text del {
+.d2h-del .d2h-code-line-ctn del, .d2h-del del {
     background-color: var(--diff-del-bg-strong) !important;
     color: var(--text-primary) !important; /* Perfect contrast */
     text-decoration: none;
