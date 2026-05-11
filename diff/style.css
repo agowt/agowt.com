@@ -61,6 +61,7 @@
     --diff-line-num: #6e7681;
 }
 
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -68,17 +69,20 @@
 }
 
 body {
-    background-color: var(--bg-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
     color: var(--text-primary);
-    font-family: 'Outfit', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    transition: var(--transition);
+    background-color: var(--bg-main);
 }
 
-/* Developer Native Font Stack */
-.mono-font, textarea, .d2h-code-line, .d2h-code-line-ctn {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+/* Monospace strict font */
+.d2h-file-diff * {
+    font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace !important;
+}
+
+/* Document Font (Sans-Serif) Toggle */
+.results-section.font-sans .d2h-file-diff * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 /* Layout */
@@ -346,10 +350,14 @@ textarea:focus {
 
 .d2h-code-wrapper { width: 100%; }
 
+/* Diffs Output Table Customization */
 .d2h-code-line, .d2h-code-line-ctn {
     color: var(--text-primary) !important;
     font-size: 14px;
     background: transparent !important;
+    line-height: 1.5 !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
 }
 
 .wrap-text .d2h-code-line, 
