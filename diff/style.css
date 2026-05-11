@@ -454,3 +454,113 @@ textarea:focus {
 .d2h-file-side-diff {
     border-color: var(--border-color) !important;
 }
+
+/* ========================================= */
+/* EXPORT DROPDOWN STYLES */
+/* ========================================= */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 0.5rem;
+    background-color: var(--bg-panel);
+    min-width: 260px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+}
+
+.dropdown-content button:hover {
+    background-color: var(--bg-main);
+}
+
+/* ========================================= */
+/* PRINT / PDF EXPORT OVERRIDES */
+/* ========================================= */
+@media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+    .header, .input-grid, .action-bar, .dropdown-content {
+        display: none !important;
+    }
+    .app-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .results-section {
+        margin-top: 0 !important;
+    }
+    .diff-panel {
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .d2h-wrapper * {
+        color: black !important;
+    }
+    .d2h-wrapper {
+        background: white !important;
+    }
+    .d2h-file-wrapper {
+        background: white !important;
+        border: 1px solid #ccc !important;
+    }
+    .d2h-files-diff {
+        background: white !important;
+        border-color: #ccc !important;
+    }
+    .d2h-code-line, .d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-info {
+        color: black !important;
+    }
+    .d2h-emptyplaceholder {
+        background-color: #f6f8fa !important;
+        border-color: #ccc !important;
+    }
+    
+    /* Ensure colors print correctly if user enabled background graphics */
+    .d2h-ins, .d2h-diff-tbody > tr > td.d2h-ins {
+        background-color: #e6ffed !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .d2h-del, .d2h-diff-tbody > tr > td.d2h-del {
+        background-color: #ffeef0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .d2h-ins .d2h-code-line-ctn ins, .d2h-ins ins {
+        background-color: #abf2bc !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .d2h-del .d2h-code-line-ctn del, .d2h-del del {
+        background-color: #ffd8d9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.9">
+    <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
     <main class="app-container">
@@ -79,6 +79,17 @@
                     <i class="ph ph-arrows-in-line-vertical"></i> <span class="hide-mobile">Hide Inputs</span>
                 </button>
 
+                <div class="export-dropdown" id="exportDropdownContainer" style="display: none; position: relative; margin-right: 1rem;">
+                    <button class="btn btn-secondary" id="btnExportMenu" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="ph ph-export"></i> <span class="hide-mobile">Export</span> <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="exportMenuContent">
+                        <button id="btnExportHTML"><i class="ph ph-file-html"></i> Export as Interactive HTML</button>
+                        <button id="btnExportPDF"><i class="ph ph-file-pdf"></i> Export to PDF (Print)</button>
+                        <button id="btnExportPatch"><i class="ph ph-file-code"></i> Export as Git Patch (.diff)</button>
+                    </div>
+                </div>
+
                 <button id="compareBtn" class="btn btn-primary">
                     <i class="ph ph-arrows-left-right"></i> Compare Now
                 </button>
@@ -95,6 +106,6 @@
     <!-- Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
-    <script src="script.min.js?v=1.4"></script>
+    <script src="script.min.js?v=1.5"></script>
 </body>
 </html>
