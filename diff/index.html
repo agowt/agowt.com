@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.6">
+    <link rel="stylesheet" href="style.css?v=1.7">
 </head>
 <body>
     <main class="app-container">
@@ -62,13 +62,29 @@
             
             <div class="action-bar">
                 <div class="view-toggles">
-                    <button class="btn btn-tab active" id="btnSideBySide">
-                        <i class="ph ph-columns"></i> Side-by-Side
+                    <button class="btn btn-tab active" id="btnSideBySide" title="Side-by-Side">
+                        <i class="ph ph-columns"></i> <span class="hide-mobile">Side-by-Side</span>
                     </button>
-                    <button class="btn btn-tab" id="btnLineByLine">
-                        <i class="ph ph-list-dashes"></i> Line-by-Line
+                    <button class="btn btn-tab" id="btnLineByLine" title="Line-by-Line">
+                        <i class="ph ph-list-dashes"></i> <span class="hide-mobile">Line-by-Line</span>
                     </button>
                 </div>
+                
+                <div class="view-toggles" style="margin-left: 1rem;">
+                    <button class="btn btn-tab active" id="btnWrap" title="Wrap Text">
+                        <i class="ph ph-text-wrap"></i> <span class="hide-mobile">Wrap Text</span>
+                    </button>
+                    <button class="btn btn-tab" id="btnNoWrap" title="No Wrap">
+                        <i class="ph ph-arrows-out-line-horizontal"></i> <span class="hide-mobile">No Wrap</span>
+                    </button>
+                </div>
+
+                <div style="flex: 1;"></div>
+                
+                <button class="btn btn-tab" id="btnToggleInputs" style="margin-right: 1rem; display: none;" title="Toggle Inputs">
+                    <i class="ph ph-arrows-in-line-vertical"></i> <span class="hide-mobile">Hide Inputs</span>
+                </button>
+
                 <button id="compareBtn" class="btn btn-primary">
                     <i class="ph ph-arrows-left-right"></i> Compare Now
                 </button>
@@ -85,6 +101,6 @@
     <!-- Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
-    <script src="script.min.js?v=1.1"></script>
+    <script src="script.min.js?v=1.2"></script>
 </body>
 </html>
