@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy-First Diff Checker | agowt.com</title>
+    <meta name="description" content="A secure, client-side text and code comparison tool. Highlight differences instantly without uploading your sensitive data to a server.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Diff2Html Default Styles -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="ph-fill ph-file-code"></i>
+                <h1>agowt<span>diff</span></h1>
+            </div>
+            <p>100% Local Text Comparison. Zero Server Uploads. Absolute Privacy.</p>
+        </header>
+
+        <div class="glass-panel main-panel">
+            <div class="input-grid">
+                <div class="input-group">
+                    <div class="input-header">
+                        <i class="ph ph-file-dashed"></i>
+                        <span>Original Text</span>
+                        <button class="icon-btn clear-btn" data-target="originalText" title="Clear">
+                            <i class="ph ph-trash"></i>
+                        </button>
+                    </div>
+                    <textarea id="originalText" placeholder="Paste your original text or code here..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-header">
+                        <i class="ph ph-file-text"></i>
+                        <span>Modified Text</span>
+                        <button class="icon-btn clear-btn" data-target="modifiedText" title="Clear">
+                            <i class="ph ph-trash"></i>
+                        </button>
+                    </div>
+                    <textarea id="modifiedText" placeholder="Paste your modified text or code here..."></textarea>
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <div class="view-toggles">
+                    <button class="btn btn-tab active" id="btnSideBySide">
+                        <i class="ph ph-columns"></i> Side-by-Side
+                    </button>
+                    <button class="btn btn-tab" id="btnLineByLine">
+                        <i class="ph ph-list-dashes"></i> Line-by-Line
+                    </button>
+                </div>
+                <button id="compareBtn" class="btn btn-primary">
+                    <i class="ph ph-arrows-left-right"></i> Compare Now
+                </button>
+            </div>
+        </div>
+
+        <section class="results-section hidden" id="resultsSection">
+            <div class="glass-panel diff-panel">
+                <div id="diffOutput"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
+    <script src="script.min.js"></script>
+</body>
+</html>

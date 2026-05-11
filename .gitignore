@@ -3,6 +3,7 @@ implementation_plan_uw/
 
 # Source Code Protection (Only push obfuscated code)
 compress/script.js
+diff/script.js
 
 # Node
 node_modules/

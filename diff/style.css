@@ -1,0 +1,365 @@
+:root {
+    --bg-dark: #0a0a0f;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-hover: rgba(255, 255, 255, 0.06);
+    
+    --accent-primary: #0ea5e9;
+    --accent-secondary: #8b5cf6;
+    --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    
+    --success: #10b981;
+    --danger: #ef4444;
+    
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* Dynamic Background Orbs */
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    filter: blur(120px);
+    opacity: 0.3;
+    border-radius: 50%;
+    animation: float 20s infinite alternate;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+}
+
+.blob-2 {
+    bottom: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(5%, 10%) scale(1.1); }
+}
+
+/* Layout */
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.logo i {
+    color: var(--accent-primary);
+}
+
+.logo span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 400px;
+}
+
+.input-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--glass-border);
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.input-header span {
+    flex: 1;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.icon-btn:hover {
+    color: var(--danger);
+}
+
+textarea {
+    width: 100%;
+    flex: 1;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    color: var(--text-primary);
+    padding: 1rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    transition: var(--transition);
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+}
+
+textarea:focus {
+    border-color: var(--accent-primary);
+    box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.3);
+}
+
+/* Action Bar */
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+}
+
+@media (max-width: 600px) {
+    .action-bar {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: stretch;
+    }
+}
+
+.view-toggles {
+    display: flex;
+    background: rgba(0,0,0,0.5);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem;
+    border: 1px solid var(--glass-border);
+}
+
+.btn-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: calc(var(--radius-sm) - 0.25rem);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-tab:hover {
+    color: var(--text-primary);
+}
+
+.btn-tab.active {
+    background: var(--glass-hover);
+    color: var(--text-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: white;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Results */
+.hidden {
+    display: none !important;
+}
+
+.results-section {
+    margin-top: 3rem;
+}
+
+.diff-panel {
+    padding: 0;
+    overflow: hidden;
+}
+
+/* --- DIFF2HTML DARK THEME OVERRIDES --- */
+.d2h-wrapper {
+    background: transparent;
+}
+.d2h-file-header {
+    display: none; /* We don't need file headers for simple text comparison */
+}
+.d2h-file-wrapper {
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.d2h-code-line,
+.d2h-code-line-ctn {
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    color: #e2e8f0;
+}
+.d2h-code-line-prefix {
+    color: #94a3b8;
+}
+.d2h-code-linenumber {
+    color: #64748b;
+    border-color: var(--glass-border) !important;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+/* Backgrounds */
+.d2h-files-diff {
+    background: rgba(0,0,0,0.3) !important;
+}
+.d2h-emptyplaceholder {
+    background-color: transparent !important;
+}
+
+/* Diff Colors - Dark Mode Friendly */
+.d2h-del {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+.d2h-ins {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Inline Diff Colors */
+.d2h-ins .d2h-code-line-text, .d2h-ins .d2h-code-line-prefix {
+    color: #34d399;
+}
+.d2h-del .d2h-code-line-text, .d2h-del .d2h-code-line-prefix {
+    color: #f87171;
+}
+
+/* Intra-line highlights */
+.d2h-ins .d2h-code-line-text ins {
+    background-color: rgba(16, 185, 129, 0.4) !important;
+    text-decoration: none;
+}
+.d2h-del .d2h-code-line-text del {
+    background-color: rgba(239, 68, 68, 0.4) !important;
+    text-decoration: none;
+}
+
+/* Sync Scroll Alignment Borders */
+.d2h-file-side-diff {
+    border-color: var(--glass-border) !important;
+}
+tbody.d2h-diff-tbody > tr > td {
+    border-color: var(--glass-border) !important;
+}
