@@ -354,8 +354,9 @@ textarea:focus {
 
 .d2h-code-linenumber {
     color: var(--text-muted) !important;
-    border-color: var(--border-color) !important;
-    background-color: var(--bg-header) !important;
+    border: none !important;
+    background-color: transparent !important;
+    padding-right: 1.5rem !important;
 }
 
 .d2h-emptyplaceholder {
@@ -369,7 +370,7 @@ textarea:focus {
     border-color: var(--diff-ins-bg-strong) !important;
 }
 .d2h-ins .d2h-code-line-text, .d2h-ins .d2h-code-line-prefix {
-    color: var(--diff-ins-text) !important;
+    color: var(--text-primary) !important;
 }
 
 /* Deletions (Red) */
@@ -378,7 +379,7 @@ textarea:focus {
     border-color: var(--diff-del-bg-strong) !important;
 }
 .d2h-del .d2h-code-line-text, .d2h-del .d2h-code-line-prefix {
-    color: var(--diff-del-text) !important;
+    color: var(--text-primary) !important;
 }
 
 /* Intra-line highlights (The specific changed words) */
@@ -391,7 +392,7 @@ textarea:focus {
 .d2h-del .d2h-code-line-text del {
     background-color: var(--diff-del-bg-strong) !important;
     color: var(--text-primary) !important; /* Perfect contrast */
-    text-decoration: line-through;
+    text-decoration: none;
     border-radius: 2px;
 }
 
