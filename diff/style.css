@@ -372,11 +372,13 @@ textarea:focus {
     border-radius: 0;
     margin-bottom: 0;
     background: var(--bg-panel) !important;
+    overflow-x: auto;
 }
 
 .d2h-files-diff {
     background: var(--bg-panel) !important;
     width: 100% !important;
+    min-width: 700px !important;
     table-layout: fixed !important; 
     border-color: var(--border-color) !important;
 }
@@ -424,6 +426,12 @@ textarea:focus {
 
 .d2h-code-line-prefix {
     color: var(--text-muted) !important;
+}
+
+/* Fix massive empty column padding injected by diff2html */
+.d2h-code-side-line {
+    padding: 0 0.5rem !important;
+    width: 100% !important;
 }
 
 .d2h-code-linenumber,
@@ -537,7 +545,7 @@ textarea:focus {
         background-color: white !important;
         color: black !important;
     }
-    .header, .input-grid, .action-bar, .dropdown-content {
+    .app-masthead, .utility-bar, .input-grid, .action-bar, .dropdown-content, .d2h-file-header {
         display: none !important;
     }
     .app-container {

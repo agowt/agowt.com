@@ -1,28 +1,51 @@
-# Implementation Plan: Privacy-First Diff Checker (`agowt.com/diff/`)
+# Diff Enhancements & Investigation
 
-## Goal Description
-Build the second utility website: a premium, privacy-first text and code comparison tool. It will highlight the differences between two blocks of text locally in the browser, ensuring sensitive code or documents never leave the user's device.
+This document outlines the investigation into the mobile rendering issues, PDF export usability, Word document export, and the perceived "extra empty columns" in the diff table, along with the proposed solutions.
 
-## Proposed Features
-1.  **Dual Input Panels:** Clear, syntax-friendly textareas for "Original Text" and "Modified Text".
-2.  **100% Client-Side Diffing:** Utilizing the industry-standard `diff` and `diff2html` libraries via CDN to compute and render the diff entirely in the browser.
-3.  **Multiple Views:** Ability to toggle between "Side-by-Side" (split view) and "Line-by-Line" (unified view) comparisons.
-4.  **GitHub-Style Rendering:** Beautiful, color-coded line highlights (green for additions, red for deletions) with line numbers, mirroring the familiar GitHub UI.
-5.  **Premium Aesthetics:** Consistent with the `compress` tool, it will feature the `agowt.com` signature Glassmorphism UI, dark mode, and vibrant gradients.
-6.  **Code Protection:** The core logic (`script.js`) will be obfuscated to `script.min.js` to protect the intellectual property.
+## User Review Required
+Please review the proposed solutions below. No code changes have been made yet. Let me know if you approve this plan or if you have any adjustments!
 
-## Technical Approach & File Structure
-We will create a new directory inside the project: `/agowt.com/diff/`.
+## 1. Mobile Rendering Issue (1 Letter Per Line)
+**Investigation**: 
+Currently, the side-by-side table is forcing the text to fit within the screen width. Because we apply a rule (`word-break: break-all;`) to prevent long code strings from breaking the layout, the browser shrinks the columns on a mobile screen so much that it forces the text to wrap after every single letter.
 
-### [NEW] `/agowt.com/diff/index.html`
-*   Semantic HTML5 structure with SEO meta tags.
-*   CDN links for `diff` (jsdiff), `diff2html` (CSS & JS), and Phosphor Icons.
-*   UI structure: Header, Input Section (Two textareas), Action Bar (Compare Button & View Toggles), and Results Container.
+**Proposed Fix**:
+- Implement horizontal scrolling on mobile. 
+- We will set a `min-width` (e.g., `700px`) on the diff table. On smaller screens, the text will no longer squish into 1 letter per line; instead, it will render legibly and the user can simply swipe left/right to view the full side-by-side comparison.
 
-### [NEW] `/agowt.com/diff/style.css`
-*   Vanilla CSS sharing the design language of the Image Optimizer (CSS variables, glassmorphism, dark theme).
-*   Custom overrides for the `diff2html` default styles to make the diff output look seamless and premium within our dark mode theme.
+## 2. PDF Export Usability
+**Investigation**:
+The "Export to PDF" button currently just triggers the standard browser `window.print()`. Because there are no print-specific styles, the browser tries to print the entire webpage (including the black masthead, the input boxes, and buttons), which results in the diff table being squished or cut off, rendering the PDF useless.
 
-### [NEW] `/agowt.com/diff/script.js`
-*   Event listeners for the "Compare" button and view toggles.
-*   Logic to extract text, generate the diff string, and pass it to `diff2html` for DOM rendering.
+**Proposed Fix**:
+- Add a dedicated `@media print` CSS block.
+- When exporting to PDF, this CSS will automatically hide the header, input boxes, and action buttons. 
+- It will expand the diff table to use 100% of the page width and apply an appropriate scale so the side-by-side view fits neatly onto an A4 PDF page without getting cut off.
+
+## 3. Export to Word (.doc)
+**Investigation**:
+Exporting directly to MS Word without a backend server is perfectly achievable by packaging the HTML diff table and our custom CSS into a `.doc` file format (using the `application/msword` MIME type). 
+
+**Proposed Fix**:
+- Add an "Export to Word" button to the export dropdown.
+- Write a javascript function that grabs the generated diff HTML, wraps it in the necessary Microsoft Office HTML tags, and downloads it as `agowt-diff.doc`. This file can be opened directly in Microsoft Word, and the text will be fully editable.
+
+## 4. "Extra Empty Columns" on the Right Side
+**Investigation**:
+Thank you for the clarification and the blue highlights! I dug into the core CSS of the `diff2html` library we are using, and I found the exact culprit. 
+
+The library automatically applies a massive default padding of `4.5em` (about 72px) to the left and right of the text within the code columns, along with a `width: calc(100% - 9em)`. Because our custom CSS forces the text to wrap, the text wraps early to respect this huge right padding. This massive `4.5em` right padding is exactly the "extra empty column" you highlighted.
+
+**Proposed Fix**:
+- We will override this default library behavior in our `style.css` by setting the padding on `.d2h-code-side-line` to a much more reasonable value (e.g., `0.5rem`). 
+- This will allow the text to flow all the way to the edge of the panel, completely removing that thick empty column on the right of the Original and Modified sections.
+
+---
+
+### Implementation Steps
+1. **HTML**: Add the `btnExportWord` to the dropdown menu.
+2. **CSS**: Add `@media (max-width: 768px)` rules for the `.d2h-file-diff` minimum width and horizontal scrolling.
+3. **CSS**: Add `@media print` rules to hide UI elements and format the table for A4 PDFs.
+4. **JS**: Implement the HTML-to-Word export logic.
+
+Let me know if you approve this plan!
