@@ -120,19 +120,17 @@ document.addEventListener('click', () => {
 // Export Handlers
 btnExportPDF.addEventListener('click', () => window.print());
 
-btnExportWord.addEventListener('click', async () => {
+btnExportWord.addEventListener('click', () => {
     if (!currentPatchData) return;
     
-    let css = '';
-    try {
-        const d2hCss = await fetch('https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css').then(r => r.text());
-        const appCss = await fetch('style.css').then(r => r.text());
-        css = d2hCss + '\n' + appCss;
-    } catch(e) {
-        console.error("Could not fetch CSS for offline export", e);
-    }
+    // Use absolute URLs for CSS to avoid async fetch blockers in Safari/iOS and allow Word to download styles
+    const absoluteStyleUrl = new URL('style.css', window.location.href).href;
+    const cssLinks = `
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+        <link rel="stylesheet" type="text/css" href="${absoluteStyleUrl}" />
+    `;
 
-    const preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Privacy-First Diff Checker</title><style>" + css + "</style></head><body style='padding: 2rem;'>";
+    const preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Privacy-First Diff Checker</title>" + cssLinks + "</head><body style='padding: 2rem;'>";
     const postHtml = "</body></html>";
     
     const bodyContent = `
@@ -157,24 +155,21 @@ btnExportPatch.addEventListener('click', () => {
     triggerDownload(blob, 'agowt-diff.patch');
 });
 
-btnExportHTML.addEventListener('click', async () => {
+btnExportHTML.addEventListener('click', () => {
     if (!currentPatchData) return;
     
-    let css = '';
-    try {
-        const d2hCss = await fetch('https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css').then(r => r.text());
-        const appCss = await fetch('style.css').then(r => r.text());
-        css = d2hCss + '\n' + appCss;
-    } catch(e) {
-        console.error("Could not fetch CSS for offline export", e);
-    }
+    const absoluteStyleUrl = new URL('style.css', window.location.href).href;
+    const cssLinks = `
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+        <link rel="stylesheet" type="text/css" href="${absoluteStyleUrl}" />
+    `;
 
     const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Privacy-First Diff Checker (Offline Export)</title>
-    <style>${css}</style>
+    ${cssLinks}
 </head>
 <body style="padding: 2rem;">
     <div class="app-container" style="width: 100%; max-width: none;">

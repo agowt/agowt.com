@@ -428,10 +428,11 @@ textarea:focus {
     color: var(--text-muted) !important;
 }
 
-/* Fix massive empty column padding injected by diff2html */
+/* Fix massive empty column padding injected by diff2html, but keep left padding for line numbers */
 .d2h-code-side-line {
-    padding: 0 0.5rem !important;
-    width: 100% !important;
+    padding-left: 4.5em !important;
+    padding-right: 0.5rem !important;
+    width: calc(100% - 4.5em - 0.5rem) !important;
 }
 
 .d2h-code-linenumber,
