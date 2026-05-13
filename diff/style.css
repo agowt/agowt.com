@@ -415,13 +415,14 @@ textarea:focus {
     word-break: break-word !important;
 }
 
-/* Override all deep table backgrounds */
+/* Override all deep table backgrounds and align to top */
 .d2h-file-diff, 
 .d2h-diff-tbody, 
 .d2h-diff-tbody > tr, 
 .d2h-diff-tbody > tr > td {
     background-color: transparent !important;
     border-color: var(--border-color) !important;
+    vertical-align: top !important;
 }
 
 .d2h-code-line-prefix {
@@ -432,9 +433,9 @@ textarea:focus {
 .d2h-code-side-linenumber {
     position: static !important;
     display: table-cell !important;
-    width: 3em !important;
-    min-width: 3em !important;
-    padding: 0 0.5rem !important;
+    width: 2.5em !important;
+    min-width: 2.5em !important;
+    padding: 0 0.25rem !important;
 }
 
 /* Force text columns to stretch to the end to eliminate empty space */
