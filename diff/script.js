@@ -229,15 +229,17 @@ function generateDiff() {
             currentPatchData = patch;
 
             // 2. Render HTML using diff2html
-            const diffHtml = Diff2Html.html(patch, {
+            let diffHtml = Diff2Html.html(patch, {
                 drawFileList: false,
                 matching: 'lines',
                 outputFormat: currentOutputFormat,
                 renderNothingWhenEmpty: false,
             });
 
-            const diffHeaderHtml = `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; color: var(--text-muted); padding: 1rem 1rem 0; background: var(--bg-panel); white-space: pre-wrap;">--- Original\n+++ Modified</div>`;
-            diffOutput.innerHTML = diffHeaderHtml + diffHtml;
+            // Inject the '--- Original +++ Modified' header directly into the hunk line (@@ -1,44 +1,44 @@)
+            diffHtml = diffHtml.replace(/(<div class="d2h-code-side-line">)(@@[^<]+)(<\/div>)/g, '$1$2 | --- Original +++ Modified$3');
+
+            diffOutput.innerHTML = diffHtml;
             exportDropdownContainer.style.display = 'inline-block';
 
         } catch (err) {

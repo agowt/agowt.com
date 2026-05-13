@@ -440,7 +440,7 @@ textarea:focus {
 /* Force text columns to stretch to the end to eliminate empty space */
 .d2h-code-side-line {
     padding: 0 0.5rem !important;
-    width: 100% !important;
+    width: 95% !important;
     box-sizing: border-box !important;
 }
 
