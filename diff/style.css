@@ -588,16 +588,24 @@ textarea:focus {
         background: white !important;
         border-color: #ccc !important;
     }
-    .d2h-code-line, .d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-info, .d2h-code-line-prefix {
+    /* High specificity deep selectors to override diff2html dark theme bleed in print */
+    .d2h-code-line, .d2h-code-line-ctn, .d2h-code-line-prefix,
+    .d2h-code-side-linenumber, .d2h-diff-tbody > tr > td.d2h-code-side-linenumber, .d2h-code-side-linenumber *,
+    .d2h-info, .d2h-diff-tbody > tr > td.d2h-info, .d2h-info *, .d2h-info .d2h-code-side-line {
         color: black !important;
         font-size: 6pt !important;
         line-height: 1.2 !important;
     }
-    .d2h-code-side-linenumber {
+    .d2h-code-side-linenumber, .d2h-diff-tbody > tr > td.d2h-code-side-linenumber {
         width: 2em !important;
         max-width: 2em !important;
         padding: 0 !important;
         text-align: center !important;
+    }
+    .d2h-info, .d2h-info .d2h-code-side-line {
+        background-color: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
     /* Enforce wrapping exclusively for print to prevent truncation */
     .d2h-code-line-ctn, .d2h-code-line {
