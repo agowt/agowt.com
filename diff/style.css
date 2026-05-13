@@ -440,10 +440,11 @@ textarea:focus {
     padding: 0 0.25rem !important;
 }
 
-/* Force text columns to stretch to the end to eliminate empty space */
+/* Force text columns to calculate exact width dynamically */
 .d2h-code-side-line {
     padding: 0 0.5rem !important;
-    width: 95% !important;
+    width: calc(100% - 2.5em) !important;
+    max-width: calc(100% - 2.5em) !important;
     box-sizing: border-box !important;
 }
 
@@ -507,6 +508,12 @@ textarea:focus {
 /* Borders */
 .d2h-file-side-diff {
     border-color: var(--border-color) !important;
+    /* Force exact 50/50 flex split regardless of content */
+    flex: 1 1 50% !important;
+    min-width: 0 !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    box-sizing: border-box !important;
 }
 
 /* ========================================= */
@@ -626,9 +633,12 @@ textarea:focus {
         table-layout: fixed !important;
     }
     .d2h-file-side-diff {
+        flex: 1 1 50% !important;
+        min-width: 0 !important;
         width: 50% !important;
         max-width: 50% !important;
         overflow: hidden !important;
+        box-sizing: border-box !important;
     }
     .d2h-emptyplaceholder {
         background-color: #f6f8fa !important;
