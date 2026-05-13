@@ -282,9 +282,6 @@ textarea:focus {
         flex-wrap: wrap;
         gap: 1rem;
     }
-    .hide-mobile {
-        display: none;
-    }
 }
 
 .view-toggles {
@@ -593,8 +590,14 @@ textarea:focus {
     }
     .d2h-code-line, .d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-info, .d2h-code-line-prefix {
         color: black !important;
-        font-size: 8pt !important;
+        font-size: 6pt !important;
         line-height: 1.2 !important;
+    }
+    .d2h-code-side-linenumber {
+        width: 2em !important;
+        max-width: 2em !important;
+        padding: 0 !important;
+        text-align: center !important;
     }
     /* Enforce wrapping exclusively for print to prevent truncation */
     .d2h-code-line-ctn, .d2h-code-line {

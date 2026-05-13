@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=4.0">
+    <link rel="stylesheet" href="style.css?v=4.1">
 </head>
 <body>
     <header class="app-masthead">
@@ -61,31 +61,31 @@
             <div class="action-bar">
                 <div class="view-toggles">
                     <button class="btn btn-tab active" id="btnWrap" title="Wrap Text">
-                        <i class="ph ph-text-align-justify"></i> <span class="hide-mobile">Wrap Text</span>
+                        <i class="ph ph-text-align-justify"></i> Wrap Text
                     </button>
                     <button class="btn btn-tab" id="btnNoWrap" title="No Wrap">
-                        <i class="ph ph-arrows-out-line-horizontal"></i> <span class="hide-mobile">No Wrap</span>
+                        <i class="ph ph-arrows-out-line-horizontal"></i> No Wrap
                     </button>
                 </div>
 
                 <div class="view-toggles" style="margin-left: 1rem;">
                     <button class="btn btn-tab active" id="btnCodeFont" title="Code Font (Monospace)">
-                        <i class="ph ph-code"></i> <span class="hide-mobile">Code Font</span>
+                        <i class="ph ph-code"></i> Code Font
                     </button>
                     <button class="btn btn-tab" id="btnDocFont" title="Document Font (Sans-Serif)">
-                        <i class="ph ph-text-aa"></i> <span class="hide-mobile">Doc Font</span>
+                        <i class="ph ph-text-aa"></i> Doc Font
                     </button>
                 </div>
 
                 <div style="flex: 1;"></div>
                 
                 <button class="btn btn-tab" id="btnToggleInputs" style="margin-right: 1rem; display: none;" title="Toggle Inputs">
-                    <i class="ph ph-arrows-in-line-vertical"></i> <span class="hide-mobile">Hide Inputs</span>
+                    <i class="ph ph-arrows-in-line-vertical"></i> Hide Inputs
                 </button>
 
                 <div class="export-dropdown" id="exportDropdownContainer" style="display: none; position: relative; margin-right: 1rem;">
                     <button class="btn btn-secondary" id="btnExportMenu" style="display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="ph ph-export"></i> <span class="hide-mobile">Export</span> <i class="ph ph-caret-down"></i>
+                        <i class="ph ph-export"></i> Export <i class="ph ph-caret-down"></i>
                     </button>
                     <div class="dropdown-content" id="exportMenuContent">
                         <button id="btnExportHTML"><i class="ph ph-file-html"></i> Export as Interactive HTML</button>
@@ -112,6 +112,6 @@
     <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
     <!-- Load script directly to ensure all updates reflect without build step -->
-    <script src="script.js?v=4.0"></script>
+    <script src="script.js?v=4.1"></script>
 </body>
 </html>
