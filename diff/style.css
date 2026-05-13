@@ -601,6 +601,12 @@ textarea:focus {
         max-width: 2em !important;
         padding: 0 !important;
         text-align: center !important;
+        box-sizing: border-box !important;
+    }
+    .d2h-code-side-line, .d2h-diff-tbody > tr > td.d2h-code-side-line {
+        width: calc(100% - 2em) !important;
+        max-width: calc(100% - 2em) !important;
+        box-sizing: border-box !important;
     }
     .d2h-info, .d2h-info .d2h-code-side-line {
         background-color: #f0f0f0 !important;
