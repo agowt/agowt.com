@@ -591,8 +591,27 @@ textarea:focus {
         background: white !important;
         border-color: #ccc !important;
     }
-    .d2h-code-line, .d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-info {
+    .d2h-code-line, .d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-info, .d2h-code-line-prefix {
         color: black !important;
+        font-size: 8pt !important;
+        line-height: 1.2 !important;
+    }
+    /* Enforce wrapping exclusively for print to prevent truncation */
+    .d2h-code-line-ctn, .d2h-code-line {
+        white-space: pre-wrap !important; 
+        word-wrap: break-word !important; 
+        word-break: break-word !important;
+    }
+    /* Enforce strict layout */
+    .d2h-diff-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed !important;
+    }
+    .d2h-file-side-diff {
+        width: 50% !important;
+        max-width: 50% !important;
+        overflow: hidden !important;
     }
     .d2h-emptyplaceholder {
         background-color: #f6f8fa !important;
@@ -619,5 +638,37 @@ textarea:focus {
         background-color: #ffd8d9 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+    }
+}
+
+/* ========================================= */
+/* MOBILE RESPONSIVE LAYOUT */
+/* ========================================= */
+@media (max-width: 600px) {
+    .action-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    .view-toggles {
+        justify-content: center;
+        width: 100%;
+        margin: 0 0 0.5rem 0 !important;
+    }
+    #btnToggleInputs,
+    .export-dropdown,
+    #compareBtn {
+        width: 100%;
+        margin: 0 !important;
+    }
+    #btnToggleInputs, #compareBtn, #btnExportMenu {
+        justify-content: center;
+        text-align: center;
+    }
+    .dropdown-content {
+        left: 0;
+        right: 0;
+        min-width: unset;
+        width: 100%;
     }
 }
