@@ -427,6 +427,11 @@ textarea:focus {
 
 .d2h-code-line-prefix {
     color: var(--text-muted) !important;
+    vertical-align: top !important;
+}
+
+.d2h-code-line-ctn {
+    vertical-align: top !important;
 }
 
 /* Lock line numbers into the table cell so they don't float absolutely on mobile */
