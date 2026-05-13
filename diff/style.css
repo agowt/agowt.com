@@ -428,11 +428,20 @@ textarea:focus {
     color: var(--text-muted) !important;
 }
 
-/* Fix massive empty column padding injected by diff2html, but keep left padding for line numbers */
+/* Lock line numbers into the table cell so they don't float absolutely on mobile */
+.d2h-code-side-linenumber {
+    position: static !important;
+    display: table-cell !important;
+    width: 3em !important;
+    min-width: 3em !important;
+    padding: 0 0.5rem !important;
+}
+
+/* Force text columns to stretch to the end to eliminate empty space */
 .d2h-code-side-line {
-    padding-left: 4.5em !important;
-    padding-right: 0.5rem !important;
-    width: calc(100% - 4.5em - 0.5rem) !important;
+    padding: 0 0.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .d2h-code-linenumber,

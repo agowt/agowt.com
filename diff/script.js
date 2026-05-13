@@ -236,7 +236,8 @@ function generateDiff() {
                 renderNothingWhenEmpty: false,
             });
 
-            diffOutput.innerHTML = diffHtml;
+            const diffHeaderHtml = `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; color: var(--text-muted); padding: 1rem 1rem 0; background: var(--bg-panel); white-space: pre-wrap;">--- Original\n+++ Modified</div>`;
+            diffOutput.innerHTML = diffHeaderHtml + diffHtml;
             exportDropdownContainer.style.display = 'inline-block';
 
         } catch (err) {
