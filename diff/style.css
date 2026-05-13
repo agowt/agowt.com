@@ -554,12 +554,6 @@ textarea:focus {
 /* PRINT / PDF EXPORT OVERRIDES */
 /* ========================================= */
 @media print {
-    @page {
-        margin: 1cm;
-    }
-    *, *:before, *:after {
-        box-sizing: border-box !important;
-    }
     body {
         background-color: white !important;
         color: black !important;
@@ -607,9 +601,6 @@ textarea:focus {
         max-width: 2em !important;
         padding: 0 !important;
         text-align: center !important;
-    }
-    .d2h-code-side-line {
-        width: auto !important;
     }
     .d2h-info, .d2h-info .d2h-code-side-line {
         background-color: #f0f0f0 !important;
