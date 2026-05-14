@@ -374,8 +374,10 @@ textarea:focus {
 
 .d2h-files-diff {
     background: var(--bg-panel) !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
     width: 100% !important;
-    min-width: 700px !important;
+    min-width: 100% !important;
     table-layout: fixed !important; 
     border-color: var(--border-color) !important;
 }
@@ -509,6 +511,10 @@ textarea:focus {
 /* Borders and layout for side-by-side diff panels */
 .d2h-file-side-diff {
     border-color: var(--border-color) !important;
+    width: 100% !important; /* Take full width of grid column */
+    min-width: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
 }
 
 /* ========================================= */
@@ -628,9 +634,10 @@ textarea:focus {
         table-layout: fixed !important;
     }
     .d2h-file-side-diff {
-        width: 50% !important;
-        max-width: 50% !important;
+        width: 100% !important; /* Take full width of grid column */
+        min-width: 0 !important;
         overflow: hidden !important;
+        box-sizing: border-box !important;
     }
     .d2h-emptyplaceholder {
         background-color: #f6f8fa !important;
