@@ -377,7 +377,7 @@ textarea:focus {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
     width: 100% !important;
-    min-width: 100% !important;
+    min-width: 700px !important; /* Force single horizontal scrollbar on mobile screens */
     table-layout: fixed !important; 
     border-color: var(--border-color) !important;
 }
@@ -595,6 +595,7 @@ textarea:focus {
     .d2h-files-diff {
         background: white !important;
         border-color: #ccc !important;
+        min-width: 100% !important; /* Override 700px so it fits perfectly on A4 paper */
     }
     /* High specificity deep selectors to override diff2html dark theme bleed in print */
     .d2h-code-line, .d2h-code-line-ctn, .d2h-code-line-prefix,
