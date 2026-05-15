@@ -446,8 +446,8 @@ textarea:focus {
 /* Force text columns to calculate exact width dynamically to prevent overflow */
 .d2h-code-side-line {
     padding: 0 0.5rem !important;
-    width: calc(100% - 2em - 1rem) !important;
-    max-width: calc(100% - 2em - 1rem) !important;
+    width: calc(100% - 2em) !important;
+    max-width: calc(100% - 2em) !important;
     box-sizing: border-box !important;
 }
 
@@ -513,7 +513,7 @@ textarea:focus {
     border-color: var(--border-color) !important;
     width: 100% !important; /* Take full width of grid column */
     min-width: 0 !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     box-sizing: border-box !important;
 }
 
@@ -613,8 +613,8 @@ textarea:focus {
         box-sizing: border-box !important;
     }
     .d2h-code-side-line, .d2h-diff-tbody > tr > td.d2h-code-side-line {
-        width: calc(100% - 2em - 1rem) !important;
-        max-width: calc(100% - 2em - 1rem) !important;
+        width: calc(100% - 2em) !important;
+        max-width: calc(100% - 2em) !important;
         box-sizing: border-box !important;
     }
     .d2h-info, .d2h-info .d2h-code-side-line {
@@ -637,7 +637,7 @@ textarea:focus {
     .d2h-file-side-diff {
         width: 100% !important; /* Take full width of grid column */
         min-width: 0 !important;
-        overflow: visible !important;
+        overflow: hidden !important;
         box-sizing: border-box !important;
     }
     .d2h-emptyplaceholder {
