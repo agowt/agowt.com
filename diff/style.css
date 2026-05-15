@@ -424,13 +424,37 @@ textarea:focus {
     vertical-align: top !important;
 }
 
-.d2h-code-line-prefix {
-    color: var(--text-muted) !important;
-    vertical-align: top !important;
+.d2h-code-line,
+.d2h-code-side-line {
+    display: block !important;
+    padding: 0 0.5rem !important;
+    padding-left: 2.5em !important; /* 0.5rem base + 2em for prefix */
+    text-indent: -2em !important; /* Pull first line back to align prefix to the left edge */
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
 }
 
-.d2h-code-line-ctn {
-    vertical-align: top !important;
+/* Reset for header lines which have no prefix */
+.d2h-info .d2h-code-line,
+.d2h-info .d2h-code-side-line {
+    padding-left: 0.5rem !important;
+    text-indent: 0 !important;
+}
+
+.d2h-code-line-prefix {
+    display: inline-block !important;
+    width: 2em !important;
+    text-indent: 0 !important; /* Reset indent for the prefix character */
+    color: var(--text-muted) !important;
+    vertical-align: baseline !important;
+}
+
+.d2h-code-line-ctn,
+.d2h-code-line-ctn * {
+    display: inline !important; /* Let text flow natively and force <ins>/<del> to wrap */
+    text-indent: 0 !important; /* Kill inheritance so highlights don't shift backwards and overlap */
+    vertical-align: baseline !important; /* Align naturally with the prefix */
 }
 
 /* Lock line numbers into the table cell so they don't float absolutely on mobile */
@@ -444,12 +468,7 @@ textarea:focus {
 }
 
 /* Force text columns to calculate exact width dynamically to prevent overflow */
-.d2h-code-side-line {
-    padding: 0 0.5rem !important;
-    width: calc(100% - 2em) !important;
-    max-width: calc(100% - 2em) !important;
-    box-sizing: border-box !important;
-}
+/* (Replaced by hanging indent block layout above) */
 
 .d2h-code-linenumber,
 .d2h-code-side-linenumber,
