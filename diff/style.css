@@ -558,47 +558,6 @@ textarea:focus {
     background-color: var(--bg-main);
 }
 
-/* ---------------------------------------------------------
-   UNIFIED DIFF TABLE RE-WRITE (DESIGN CHANGE 2)
-   Replaces diff2html's side-by-side grids with a single,
-   mathematically perfect 4-column table layout.
---------------------------------------------------------- */
-
-.d2h-files-unified-diff {
-    width: 100% !important;
-    overflow-x: auto !important; /* Allow single unified horizontal scrolling */
-    background-color: var(--diff-bg);
-}
-
-.d2h-unified-table {
-    width: 100% !important;
-    table-layout: fixed !important;
-    border-collapse: collapse !important;
-}
-
-.d2h-unified-table td.d2h-code-side-linenumber {
-    width: 3em !important;
-    min-width: 3em !important;
-    max-width: 3em !important;
-    padding: 0 0.25rem !important;
-    box-sizing: border-box !important;
-}
-
-.d2h-unified-table td:not(.d2h-code-side-linenumber) {
-    width: calc(50% - 3em) !important;
-    max-width: calc(50% - 3em) !important;
-    padding: 0 0.5rem !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important; /* Hide any bleeding immediately */
-}
-
-/* Force wrapping inside the unified table */
-.wrap-text .d2h-unified-table td:not(.d2h-code-side-linenumber) {
-    white-space: pre-wrap !important; 
-    word-wrap: break-word !important; 
-    word-break: break-word !important;
-}
-
 /* ========================================= */
 /* PRINT / PDF EXPORT OVERRIDES */
 /* ========================================= */
