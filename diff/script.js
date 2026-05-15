@@ -240,6 +240,12 @@ function generateDiff() {
             diffHtml = diffHtml.replace(/(<div class="d2h-code-side-line">)(@@[^<]+)(<\/div>)/g, '$1$2 | --- Original +++ Modified$3');
 
             diffOutput.innerHTML = diffHtml;
+
+            // Merge side-by-side tables into a single unified table
+            if (currentOutputFormat === 'side-by-side') {
+                mergeDiffTables();
+            }
+
             exportDropdownContainer.style.display = 'inline-block';
 
         } catch (err) {
@@ -264,3 +270,57 @@ style.innerHTML = `
 @keyframes spin { 100% { transform: rotate(360deg); } }
 `;
 document.head.appendChild(style);
+
+function mergeDiffTables() {
+    const wrappers = document.querySelectorAll('.d2h-files-diff');
+    wrappers.forEach(wrapper => {
+        const leftSide = wrapper.querySelector('.d2h-file-side-diff:nth-child(1)');
+        const rightSide = wrapper.querySelector('.d2h-file-side-diff:nth-child(2)');
+        if (!leftSide || !rightSide) return;
+
+        const leftTbody = leftSide.querySelector('.d2h-diff-tbody');
+        const rightTbody = rightSide.querySelector('.d2h-diff-tbody');
+        if (!leftTbody || !rightTbody) return;
+
+        const leftRows = Array.from(leftTbody.querySelectorAll('tr'));
+        const rightRows = Array.from(rightTbody.querySelectorAll('tr'));
+
+        // Create unified table structure
+        const newTable = document.createElement('table');
+        newTable.className = 'd2h-diff-table d2h-unified-table';
+        const newTbody = document.createElement('tbody');
+        newTbody.className = 'd2h-diff-tbody';
+
+        const maxRows = Math.max(leftRows.length, rightRows.length);
+
+        for (let i = 0; i < maxRows; i++) {
+            const newRow = document.createElement('tr');
+            
+            // Handle Left Cells
+            if (i < leftRows.length) {
+                const cells = Array.from(leftRows[i].children);
+                cells.forEach(cell => newRow.appendChild(cell));
+            } else {
+                newRow.innerHTML += '<td class="d2h-code-side-linenumber d2h-emptyplaceholder"></td><td class="d2h-emptyplaceholder"></td>';
+            }
+
+            // Handle Right Cells
+            if (i < rightRows.length) {
+                const cells = Array.from(rightRows[i].children);
+                cells.forEach(cell => newRow.appendChild(cell));
+            } else {
+                newRow.innerHTML += '<td class="d2h-code-side-linenumber d2h-emptyplaceholder"></td><td class="d2h-emptyplaceholder"></td>';
+            }
+
+            newTbody.appendChild(newRow);
+        }
+
+        newTable.appendChild(newTbody);
+
+        // Replace the two tables with the unified table
+        wrapper.innerHTML = '';
+        wrapper.classList.remove('d2h-files-diff');
+        wrapper.classList.add('d2h-files-unified-diff');
+        wrapper.appendChild(newTable);
+    });
+}
