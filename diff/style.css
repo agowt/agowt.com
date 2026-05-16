@@ -424,13 +424,29 @@ textarea:focus {
     vertical-align: top !important;
 }
 
+.d2h-code-line,
+.d2h-code-side-line {
+    display: flex !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    padding: 0 0.5rem !important; /* Base padding */
+}
+
 .d2h-code-line-prefix {
+    display: block !important;
+    flex-shrink: 0 !important;
+    width: 2em !important;
+    text-indent: 0 !important;
     color: var(--text-muted) !important;
-    vertical-align: top !important;
 }
 
 .d2h-code-line-ctn {
-    vertical-align: top !important;
+    display: block !important;
+    flex-grow: 1 !important;
+    min-width: 0 !important; /* Critical to allow text to wrap inside the flex container */
+    text-indent: 0 !important;
 }
 
 /* Lock line numbers into the table cell so they don't float absolutely on mobile */
@@ -444,12 +460,7 @@ textarea:focus {
 }
 
 /* Force text columns to calculate exact width dynamically to prevent overflow */
-.d2h-code-side-line {
-    padding: 0 0.5rem !important;
-    width: calc(100% - 2em) !important;
-    max-width: calc(100% - 2em) !important;
-    box-sizing: border-box !important;
-}
+/* (Replaced by Flexbox layout above) */
 
 .d2h-code-linenumber,
 .d2h-code-side-linenumber,
