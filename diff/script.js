@@ -240,6 +240,12 @@ function generateDiff() {
             diffHtml = diffHtml.replace(/(<div class="d2h-code-side-line">)(@@[^<]+)(<\/div>)/g, '$1$2 | --- Original +++ Modified$3');
 
             diffOutput.innerHTML = diffHtml;
+            
+            // Only merge if output format is side-by-side
+            if (currentOutputFormat === 'side-by-side') {
+                mergeDiffTables();
+            }
+
             exportDropdownContainer.style.display = 'inline-block';
 
         } catch (err) {
@@ -247,6 +253,43 @@ function generateDiff() {
             diffOutput.innerHTML = `<div style="color: var(--danger); padding: 2rem; text-align:center;">Failed to generate diff. Text might be too large.</div>`;
         }
     }, 50);
+}
+
+function mergeDiffTables() {
+    // Diff2html side-by-side mode renders TWO separate tables.
+    // This breaks vertical alignment if long text wraps on narrow screens.
+    // We physically merge them into one unified table so that 'Original' and 'Modified' 
+    // are on the exact same <tr>, forcing the browser to sync their heights.
+    const wrappers = document.querySelectorAll('.d2h-files-diff');
+    wrappers.forEach(wrapper => {
+        const sideDiffs = wrapper.querySelectorAll('.d2h-file-side-diff');
+        if (sideDiffs.length !== 2) return;
+
+        const leftTableBody = sideDiffs[0].querySelector('tbody');
+        const rightTableBody = sideDiffs[1].querySelector('tbody');
+        if (!leftTableBody || !rightTableBody) return;
+
+        const leftRows = Array.from(leftTableBody.querySelectorAll('tr'));
+        const rightRows = Array.from(rightTableBody.querySelectorAll('tr'));
+        const rowCount = Math.max(leftRows.length, rightRows.length);
+
+        for (let i = 0; i < rowCount; i++) {
+            const leftRow = leftRows[i];
+            const rightRow = rightRows[i];
+            if (leftRow && rightRow) {
+                // Move the two <td> cells from rightRow into leftRow
+                while (rightRow.firstChild) {
+                    leftRow.appendChild(rightRow.firstChild);
+                }
+            }
+        }
+        
+        // Ensure the left container can stretch full width 
+        sideDiffs[0].style.width = '100%';
+        sideDiffs[0].style.overflowX = 'auto'; // Let the unified table scroll here if needed
+        // Remove the right side container entirely
+        sideDiffs[1].remove();
+    });
 }
 
 // Add a spinner class dynamically
