@@ -307,3 +307,27 @@ style.innerHTML = `
 @keyframes spin { 100% { transform: rotate(360deg); } }
 `;
 document.head.appendChild(style);
+
+// FAQ Accordion Logic
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const answer = question.nextElementSibling;
+        
+        // Toggle current item
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items (optional, remove if you want multiple open)
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+        });
+        
+        if (!isActive) {
+            item.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+    });
+});

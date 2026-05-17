@@ -12,21 +12,51 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=4.26">
+    <link rel="stylesheet" href="style.css?v=4.27">
 </head>
 <body>
     <header class="app-masthead">
         <div class="masthead-top">
             <div class="logo">
-                <h1 class="serif-masthead">agowt<span>diff</span></h1>
+                <a href="../index.html" class="serif-masthead">TØMASS LIMITED</a>
             </div>
         </div>
         <div class="masthead-bottom">
-            <p>100% Local Text Comparison <span class="nav-divider">|</span> Zero Server Uploads <span class="nav-divider">|</span> Absolute Privacy</p>
+            <nav class="masthead-nav">
+                <a href="#">Developer Tools</a>
+                <a href="../pmrdevotion/index.html">Mobile Apps</a>
+                <a href="#">Privacy</a>
+                <a href="#">About Us</a>
+            </nav>
         </div>
     </header>
 
     <main class="app-container">
+        <!-- How It Works Section -->
+        <section class="how-it-works-section">
+            <div class="hiw-header">
+                <h1 class="serif-masthead">Privacy-First Diff Checker</h1>
+                <p>100% Local Text Comparison. Zero Server Uploads. Absolute Privacy.</p>
+            </div>
+            <div class="hiw-grid">
+                <div class="hiw-card">
+                    <i class="ph ph-lock-key"></i>
+                    <h3>100% Client-Side</h3>
+                    <p>Your code never leaves your browser. All comparisons are processed locally on your device for absolute security.</p>
+                </div>
+                <div class="hiw-card">
+                    <i class="ph ph-lightning"></i>
+                    <h3>Instant Comparison</h3>
+                    <p>Powered by advanced algorithms to instantly highlight additions, deletions, and modifications in real-time.</p>
+                </div>
+                <div class="hiw-card">
+                    <i class="ph ph-export"></i>
+                    <h3>Secure Export</h3>
+                    <p>Download your results as a universally readable PDF or HTML file locally, completely bypassing any server.</p>
+                </div>
+            </div>
+        </section>
+
         <div class="utility-bar">
             <button id="themeToggle" class="icon-btn theme-toggle-btn" title="Toggle Theme">
                 <i class="ph ph-sun" id="themeIcon"></i>
@@ -106,6 +136,40 @@
                 <div id="diffOutput"></div>
             </div>
         </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="serif-heading">Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is this diff checker safe to use with sensitive code?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. Our Privacy-First Diff Checker is built to process 100% of your data locally within your web browser. We do not have backend servers storing your data, ensuring that your proprietary code, legal documents, or sensitive configurations never leave your device.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How does the export functionality work without a server?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We utilize client-side JavaScript libraries to generate PDFs and HTML files directly from your browser's memory. This means the file you download is constructed securely on your own machine.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What file formats are supported for comparison?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can paste any raw text, including source code (JavaScript, Python, HTML, etc.), JSON, configuration files, or standard prose. The diff engine will automatically parse and highlight the line-by-line and word-by-word changes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- AGOWT Global Footer Template (Forbes Inspired) -->
@@ -131,12 +195,22 @@
                     <h4>Featured Products</h4>
                     <div class="featured-grid">
                         <div class="featured-card">
-                            <div class="card-placeholder"></div>
+                            <a href="../pmrdevotion/index.html">
+                                <img src="../pmrdevotion/images/icon-512.png" alt="PMR Devotion App" class="featured-image">
+                            </a>
                             <span>PMR Devotion iOS</span>
                         </div>
                         <div class="featured-card">
-                            <div class="card-placeholder"></div>
+                            <a href="#">
+                                <img src="images/diff_checker_thumbnail.png" alt="Diff Checker" class="featured-image">
+                            </a>
                             <span>Diff Checker</span>
+                        </div>
+                        <div class="featured-card">
+                            <a href="../compress/index.html">
+                                <img src="images/image_compress_thumbnail.png" alt="Image Compress" class="featured-image">
+                            </a>
+                            <span>Image Compress</span>
                         </div>
                     </div>
                     
@@ -192,6 +266,6 @@
     <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
     <!-- Load script directly to ensure all updates reflect without build step -->
-    <script src="script.js?v=4.26"></script>
+    <script src="script.js?v=4.27"></script>
 </body>
 </html>
