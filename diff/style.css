@@ -377,8 +377,13 @@ textarea:focus {
     display: block !important;
     width: 100% !important;
     min-width: 700px !important; /* Force single horizontal scrollbar on mobile screens */
-    table-layout: fixed !important; 
     border-color: var(--border-color) !important;
+}
+
+/* Force the actual table to strictly obey calculated column widths */
+.d2h-diff-table {
+    table-layout: fixed !important;
+    width: 100% !important;
 }
 
 .d2h-code-wrapper { width: 100%; }
@@ -404,6 +409,9 @@ textarea:focus {
     color: var(--diff-line-num) !important;
     font-size: 12px !important;
     font-family: ui-monospace, Menlo, Monaco, monospace !important;
+    /* Allow the long hunk header to wrap so it doesn't force the left column to expand in fixed layout */
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
 }
 
 .wrap-text .d2h-code-line, 
@@ -452,16 +460,16 @@ textarea:focus {
 .d2h-code-side-linenumber {
     position: static !important;
     display: table-cell !important;
-    width: 2em !important;
-    min-width: 2em !important;
+    width: 4em !important;
+    min-width: 4em !important;
     padding: 0 0.25rem !important;
     box-sizing: border-box !important;
 }
 
-/* Force text columns to exactly 50% of remaining width to prevent uneven columns on mobile */
+/* Force text columns to perfectly fill the rest of the 50/50 split on mobile & desktop */
 .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
-    width: calc(50% - 2em) !important;
-    max-width: calc(50% - 2em) !important;
+    width: calc(50% - 4em) !important;
+    max-width: calc(50% - 4em) !important;
 }
 
 .d2h-code-linenumber,
