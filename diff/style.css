@@ -175,11 +175,32 @@ body {
 .serif-masthead {
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 24px;
-    font-weight: normal;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.company-name {
+    font-weight: normal;
+    color: #cccccc;
+    font-size: 20px;
+}
+
+.logo-divider {
+    font-weight: 300;
+    color: #444444;
+    font-size: 24px;
+    padding-bottom: 2px;
+}
+
+.product-name {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 24px;
 }
 
 /* Panels */
