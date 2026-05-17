@@ -458,8 +458,11 @@ textarea:focus {
     box-sizing: border-box !important;
 }
 
-/* Force text columns to calculate exact width dynamically to prevent overflow */
-/* (Replaced by Flexbox layout above) */
+/* Force text columns to exactly 50% of remaining width to prevent uneven columns on mobile */
+.d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+    width: calc(50% - 2em) !important;
+    max-width: calc(50% - 2em) !important;
+}
 
 .d2h-code-linenumber,
 .d2h-code-side-linenumber,
