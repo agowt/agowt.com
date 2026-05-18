@@ -129,6 +129,7 @@ body {
 .masthead-nav {
     display: flex;
     gap: 2rem;
+    align-items: center;
 }
 
 .masthead-nav a {
@@ -143,6 +144,28 @@ body {
 
 .masthead-nav a:hover {
     color: #ffffff;
+}
+
+.nav-divider {
+    color: #444444;
+}
+
+.support-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-blue);
+    color: #ffffff !important;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: all 0.2s ease !important;
+}
+
+.support-btn:hover {
+    background: #2188ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(33, 136, 255, 0.3);
 }
 
 .masthead-bottom .nav-divider {
@@ -1128,4 +1151,51 @@ textarea:focus {
 .results-section.hide-line-numbers .d2h-code-side-line {
     width: 100% !important;
     padding-left: 1rem !important;
+}
+
+/* ==========================================================================
+   Monetization / Ads
+   ========================================================================== */
+
+.ad-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 300px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    text-align: center;
+}
+
+.ad-content {
+    border: 1px dashed #444;
+    padding: 2rem 1rem;
+    border-radius: var(--radius-sm);
+}
+
+.ad-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.ad-content p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 1200px) {
+    .ad-container {
+        position: static;
+        width: 100%;
+        max-width: 400px;
+        margin: 2rem auto;
+        box-shadow: none;
+    }
 }
