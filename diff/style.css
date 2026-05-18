@@ -979,7 +979,7 @@ textarea:focus {
    ========================================================================== */
 
 .how-it-works-section {
-    padding: 1.5rem 0 2rem;
+    padding: 1rem 0 2rem;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 2rem;
@@ -994,6 +994,8 @@ textarea:focus {
     margin-bottom: 1rem;
     text-transform: none;
     letter-spacing: normal;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: var(--text-primary);
 }
 
 .hiw-header p {
