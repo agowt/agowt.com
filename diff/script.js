@@ -38,7 +38,12 @@ const btnNoWrap = document.getElementById('btnNoWrap');
 const btnToggleInputs = document.getElementById('btnToggleInputs');
 const btnCodeFont = document.getElementById('btnCodeFont');
 const btnDocFont = document.getElementById('btnDocFont');
+const btnShowLines = document.getElementById('btnShowLines');
+const btnHideLines = document.getElementById('btnHideLines');
 const inputGrid = document.querySelector('.input-grid');
+
+const originalFileInput = document.getElementById('originalFileInput');
+const modifiedFileInput = document.getElementById('modifiedFileInput');
 
 const exportDropdownContainer = document.getElementById('exportDropdownContainer');
 const btnExportMenu = document.getElementById('btnExportMenu');
@@ -106,6 +111,64 @@ btnDocFont.addEventListener('click', () => {
     btnCodeFont.classList.remove('active');
     resultsSection.classList.add('font-sans');
 });
+
+// Line Numbers Toggle
+btnShowLines.addEventListener('click', () => {
+    btnShowLines.classList.add('active');
+    btnHideLines.classList.remove('active');
+    resultsSection.classList.remove('hide-line-numbers');
+});
+
+btnHideLines.addEventListener('click', () => {
+    btnHideLines.classList.add('active');
+    btnShowLines.classList.remove('active');
+    resultsSection.classList.add('hide-line-numbers');
+});
+
+// File Upload Handlers
+originalFileInput.addEventListener('change', (e) => handleFileUpload(e, originalText));
+modifiedFileInput.addEventListener('change', (e) => handleFileUpload(e, modifiedText));
+
+async function handleFileUpload(event, targetTextarea) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const ext = file.name.split('.').pop().toLowerCase();
+    
+    try {
+        let text = '';
+        if (ext === 'txt') {
+            text = await file.text();
+        } else if (ext === 'docx') {
+            const arrayBuffer = await file.arrayBuffer();
+            const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
+            text = result.value;
+        } else if (ext === 'pdf') {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                const pageText = content.items.map(item => item.str).join(' ');
+                text += pageText + '\n';
+            }
+        } else {
+            alert('Unsupported file type. Please upload .txt, .docx, or .pdf');
+            return;
+        }
+        
+        targetTextarea.value = text;
+        // Optional: Trigger comparison automatically
+        // if (originalText.value && modifiedText.value) generateDiff();
+        
+    } catch (error) {
+        console.error('Error reading file:', error);
+        alert('Error reading file. Please check console for details.');
+    }
+    
+    // Reset file input so same file can be uploaded again if cleared
+    event.target.value = '';
+}
 
 // Export Menu Toggle
 btnExportMenu.addEventListener('click', (e) => {

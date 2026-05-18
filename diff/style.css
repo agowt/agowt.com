@@ -90,7 +90,7 @@ body {
     width: 95%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 0.5rem 1.5rem 2rem 1.5rem;
     transition: width 0.3s ease;
 }
 
@@ -979,14 +979,14 @@ textarea:focus {
    ========================================================================== */
 
 .how-it-works-section {
-    padding: 3rem 0 4rem;
+    padding: 1.5rem 0 2rem;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 2rem;
 }
 
 .hiw-header {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .hiw-header h1 {
@@ -1112,4 +1112,18 @@ textarea:focus {
     .hiw-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Hide Line Numbers Toggle */
+.results-section.hide-line-numbers .d2h-file-side-diff {
+    width: 100% !important;
+}
+
+.results-section.hide-line-numbers .d2h-code-side-linenumber {
+    display: none !important;
+}
+
+.results-section.hide-line-numbers .d2h-code-side-line {
+    width: 100% !important;
+    padding-left: 1rem !important;
 }
