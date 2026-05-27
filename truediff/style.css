@@ -683,7 +683,8 @@ textarea:focus {
         background-color: white !important;
         color: black !important;
     }
-    .app-masthead, .utility-bar, .input-grid, .action-bar, .dropdown-content, .d2h-file-header {
+    .app-masthead, .utility-bar, .input-grid, .action-bar, .dropdown-content, .d2h-file-header,
+    .how-it-works-section, .faq-section, .agowt-global-footer, .ad-container {
         display: none !important;
     }
     .app-container {

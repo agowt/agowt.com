@@ -867,6 +867,12 @@ textarea:focus {
     word-wrap: break-word !important;
 }
 /* Lock line numbers into the table cell so they don't float absolutely */
+.results-section.wrap-text col.d2h-code-side-linenumber {
+    width: 4em !important;
+}
+.results-section.wrap-text col.d2h-code-side-line {
+    width: calc(50% - 4em) !important;
+}
 .results-section.wrap-text .d2h-code-side-linenumber {
     position: static !important;
     display: table-cell !important;
@@ -889,6 +895,12 @@ textarea:focus {
 }
 .results-section:not(.wrap-text) .d2h-code-line-ctn {
     white-space: pre !important;
+}
+.results-section:not(.wrap-text) col.d2h-code-side-linenumber {
+    width: 4em !important;
+}
+.results-section:not(.wrap-text) col.d2h-code-side-line {
+    width: auto !important;
 }
 .results-section:not(.wrap-text) .d2h-code-side-linenumber {
     position: static !important;
