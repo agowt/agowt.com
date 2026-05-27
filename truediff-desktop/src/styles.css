@@ -853,7 +853,7 @@ textarea:focus {
 }
 
 /* ========================================= */
-/* DYNAMIC WRAPPING RULES                   */
+/* DYNAMIC WRAPPING & TABLE LAYOUT RULES     */
 /* ========================================= */
 
 /* Word Wrap ACTIVE Rules (Wrap Toggle is ON) */
@@ -866,14 +866,20 @@ textarea:focus {
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
 }
-/* Width budgeting under Wrap */
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(1) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: calc(50% - 55px) !important; max-width: calc(50% - 55px) !important; }
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(3) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: calc(50% - 55px) !important; max-width: calc(50% - 55px) !important; }
-/* Width budgeting under Wrap + Hidden Lines */
-.results-section.wrap-text.hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: 50% !important; max-width: 50% !important; }
-.results-section.wrap-text.hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: 50% !important; max-width: 50% !important; }
+/* Lock line numbers into the table cell so they don't float absolutely */
+.results-section.wrap-text .d2h-code-side-linenumber {
+    position: static !important;
+    display: table-cell !important;
+    width: 4em !important;
+    min-width: 4em !important;
+    padding: 0 0.25rem !important;
+    box-sizing: border-box !important;
+}
+/* Force text columns to perfectly fill the rest of the 50/50 split */
+.results-section.wrap-text .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+    width: calc(50% - 4em) !important;
+    max-width: calc(50% - 4em) !important;
+}
 
 /* Word Wrap INACTIVE Rules (No Wrap Toggle is ON) */
 .results-section:not(.wrap-text) .d2h-diff-table {
@@ -884,21 +890,32 @@ textarea:focus {
 .results-section:not(.wrap-text) .d2h-code-line-ctn {
     white-space: pre !important;
 }
-/* Width budgeting under No Wrap */
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(1) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: auto !important; max-width: none !important; min-width: 350px !important; }
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(3) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: auto !important; max-width: none !important; min-width: 350px !important; }
-/* Width budgeting under No Wrap + Hidden Lines */
-.results-section:not(.wrap-text).hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: auto !important; max-width: none !important; min-width: 450px !important; }
-.results-section:not(.wrap-text).hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: auto !important; max-width: none !important; min-width: 450px !important; }
+.results-section:not(.wrap-text) .d2h-code-side-linenumber {
+    position: static !important;
+    display: table-cell !important;
+    width: 4em !important;
+    min-width: 4em !important;
+    padding: 0 0.25rem !important;
+    box-sizing: border-box !important;
+}
+.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 350px !important;
+}
 
-/* Hide line numbers selectors */
-.results-section.hide-line-numbers .d2h-code-linenumber,
-.results-section.hide-line-numbers .d2h-code-side-linenumber,
-.results-section.hide-line-numbers .d2h-diff-tbody > tr > td.d2h-code-linenumber,
-.results-section.hide-line-numbers .d2h-diff-tbody > tr > td.d2h-code-side-linenumber {
+/* Hide Line Numbers Toggle */
+.results-section.hide-line-numbers .d2h-file-side-diff {
+    width: 100% !important;
+}
+
+.results-section.hide-line-numbers .d2h-code-side-linenumber {
     display: none !important;
+}
+
+.results-section.hide-line-numbers .d2h-code-side-line {
+    width: 100% !important;
+    padding-left: 1rem !important;
 }
 
 /* Modern high-fidelity premium dark theme diff color adjustments */
