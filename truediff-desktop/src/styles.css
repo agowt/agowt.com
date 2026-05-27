@@ -867,13 +867,13 @@ textarea:focus {
     word-wrap: break-word !important;
 }
 /* Width budgeting under Wrap */
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(1) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(2) { width: calc(50% - 55px) !important; max-width: calc(50% - 55px) !important; }
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(3) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(4) { width: calc(50% - 55px) !important; max-width: calc(50% - 55px) !important; }
+.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(1) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
+.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: calc(50% - 55px) !important; max-width: calc(50% - 55px) !important; }
+.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(3) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
+.results-section.wrap-text:not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: calc(50% - 55px) !important; max-width: calc(50% - 55px) !important; }
 /* Width budgeting under Wrap + Hidden Lines */
-.results-section.wrap-text.hide-line-numbers .d2h-diff-tbody > tr > td:nth-child(2) { width: 50% !important; max-width: 50% !important; }
-.results-section.wrap-text.hide-line-numbers .d2h-diff-tbody > tr > td:nth-child(4) { width: 50% !important; max-width: 50% !important; }
+.results-section.wrap-text.hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: 50% !important; max-width: 50% !important; }
+.results-section.wrap-text.hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: 50% !important; max-width: 50% !important; }
 
 /* Word Wrap INACTIVE Rules (No Wrap Toggle is ON) */
 .results-section:not(.wrap-text) .d2h-diff-table {
@@ -885,13 +885,13 @@ textarea:focus {
     white-space: pre !important;
 }
 /* Width budgeting under No Wrap */
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(1) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(2) { width: auto !important; max-width: none !important; min-width: 350px !important; }
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(3) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
-.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:nth-child(4) { width: auto !important; max-width: none !important; min-width: 350px !important; }
+.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(1) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
+.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: auto !important; max-width: none !important; min-width: 350px !important; }
+.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(3) { width: 55px !important; min-width: 55px !important; max-width: 55px !important; }
+.results-section:not(.wrap-text):not(.hide-line-numbers) .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: auto !important; max-width: none !important; min-width: 350px !important; }
 /* Width budgeting under No Wrap + Hidden Lines */
-.results-section:not(.wrap-text).hide-line-numbers .d2h-diff-tbody > tr > td:nth-child(2) { width: auto !important; max-width: none !important; min-width: 450px !important; }
-.results-section:not(.wrap-text).hide-line-numbers .d2h-diff-tbody > tr > td:nth-child(4) { width: auto !important; max-width: none !important; min-width: 450px !important; }
+.results-section:not(.wrap-text).hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(2) { width: auto !important; max-width: none !important; min-width: 450px !important; }
+.results-section:not(.wrap-text).hide-line-numbers .d2h-diff-tbody > tr > td:not([colspan]):nth-child(4) { width: auto !important; max-width: none !important; min-width: 450px !important; }
 
 /* Hide line numbers selectors */
 .results-section.hide-line-numbers .d2h-code-linenumber,
