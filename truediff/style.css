@@ -514,8 +514,22 @@ textarea:focus {
     text-indent: 0 !important;
 }
 
-/* Lock line numbers into the table cell so they don't float absolutely on mobile */
-.d2h-code-side-linenumber {
+/* ========================================= */
+/* DYNAMIC WRAPPING & TABLE LAYOUT RULES     */
+/* ========================================= */
+
+/* Word Wrap ACTIVE Rules (Wrap Toggle is ON) */
+.results-section.wrap-text .d2h-diff-table {
+    table-layout: fixed !important;
+    width: 100% !important;
+}
+.results-section.wrap-text .d2h-code-line-ctn {
+    white-space: pre-wrap !important; 
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+}
+/* Lock line numbers into the table cell so they don't float absolutely */
+.results-section.wrap-text .d2h-code-side-linenumber {
     position: static !important;
     display: table-cell !important;
     width: 4em !important;
@@ -523,11 +537,33 @@ textarea:focus {
     padding: 0 0.25rem !important;
     box-sizing: border-box !important;
 }
-
-/* Force text columns to perfectly fill the rest of the 50/50 split on mobile & desktop */
-.d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+/* Force text columns to perfectly fill the rest of the 50/50 split */
+.results-section.wrap-text .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
     width: calc(50% - 4em) !important;
     max-width: calc(50% - 4em) !important;
+}
+
+/* Word Wrap INACTIVE Rules (No Wrap Toggle is ON) */
+.results-section:not(.wrap-text) .d2h-diff-table {
+    table-layout: auto !important;
+    width: max-content !important;
+    min-width: 100% !important;
+}
+.results-section:not(.wrap-text) .d2h-code-line-ctn {
+    white-space: pre !important;
+}
+.results-section:not(.wrap-text) .d2h-code-side-linenumber {
+    position: static !important;
+    display: table-cell !important;
+    width: 4em !important;
+    min-width: 4em !important;
+    padding: 0 0.25rem !important;
+    box-sizing: border-box !important;
+}
+.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 350px !important;
 }
 
 .d2h-code-linenumber,

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueDiff Pro</title>
+    
+    <!-- Local Vendor Styles -->
+    <link rel="stylesheet" type="text/css" href="vendor/phosphor/style.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/diff2html.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Frameless Title Bar -->
+    <div class="titlebar" data-tauri-drag-region>
+        <div class="titlebar-drag-region" data-tauri-drag-region>
+            <span class="company-name-title">TØMASS LIMITED</span>
+            <span class="logo-divider-title">|</span>
+            <span class="product-name-title">TrueDiff Pro</span>
+        </div>
+        <div class="titlebar-controls">
+            <button class="titlebar-button" id="titlebar-minimize" title="Minimize">
+                <i class="ph ph-minus"></i>
+            </button>
+            <button class="titlebar-button" id="titlebar-maximize" title="Maximize/Restore">
+                <i class="ph ph-square"></i>
+            </button>
+            <button class="titlebar-button" id="titlebar-close" title="Close">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Trial Banner / Status Bar -->
+    <div id="trialStatusBar" class="trial-status-bar hidden">
+        <div class="trial-status-left">
+            <i class="ph ph-clock"></i>
+            <span>TrueDiff Pro Trial — <strong id="trialDaysRemaining">7</strong> days remaining</span>
+        </div>
+        <button class="btn-activate-inline" id="btnActivateFromTrial">
+            <i class="ph ph-lock-open"></i> Activate License
+        </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="app-container">
+        <header class="app-masthead">
+            <div class="masthead-left">
+                <h1>Privacy-First TrueDiff Pro</h1>
+                <p>100% Local Code and Text Comparison. Zero Server Uploads.</p>
+            </div>
+            <div class="masthead-right">
+                <button id="themeToggle" class="icon-btn theme-toggle-btn" title="Toggle Theme">
+                    <i class="ph ph-sun" id="themeIcon"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-panel">
+            <div class="input-grid">
+                <!-- Original Text Group -->
+                <div class="input-group" id="originalGroup">
+                    <div class="input-header">
+                        <i class="ph ph-file-dashed"></i>
+                        <span>Original Text</span>
+                        <input type="file" id="originalFileInput" accept=".txt,.docx,.pdf" style="display: none;">
+                        <button class="icon-btn upload-btn" onclick="document.getElementById('originalFileInput').click()" title="Upload File (.txt, .docx, .pdf)">
+                            <i class="ph ph-upload-simple"></i>
+                        </button>
+                        <button class="icon-btn clear-btn" data-target="originalText" title="Clear">
+                            <i class="ph ph-trash"></i>
+                        </button>
+                    </div>
+                    <div class="textarea-container">
+                        <textarea id="originalText" placeholder="Paste text/code here, or drag and drop a file..."></textarea>
+                        <div class="drag-overlay" id="originalDragOverlay">
+                            <div class="drag-overlay-content">
+                                <i class="ph ph-file-arrow-down"></i>
+                                <span>Drop to Load File</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modified Text Group -->
+                <div class="input-group" id="modifiedGroup">
+                    <div class="input-header">
+                        <i class="ph ph-file-text"></i>
+                        <span>Modified Text</span>
+                        <input type="file" id="modifiedFileInput" accept=".txt,.docx,.pdf" style="display: none;">
+                        <button class="icon-btn upload-btn" onclick="document.getElementById('modifiedFileInput').click()" title="Upload File (.txt, .docx, .pdf)">
+                            <i class="ph ph-upload-simple"></i>
+                        </button>
+                        <button class="icon-btn clear-btn" data-target="modifiedText" title="Clear">
+                            <i class="ph ph-trash"></i>
+                        </button>
+                    </div>
+                    <div class="textarea-container">
+                        <textarea id="modifiedText" placeholder="Paste modified text/code here, or drag and drop a file..."></textarea>
+                        <div class="drag-overlay" id="modifiedDragOverlay">
+                            <div class="drag-overlay-content">
+                                <i class="ph ph-file-arrow-down"></i>
+                                <span>Drop to Load File</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <div class="action-bar-left">
+                    <div class="view-toggles">
+                        <button class="btn btn-tab active" id="btnWrap" title="Wrap Text">
+                            <i class="ph ph-text-align-justify"></i> Wrap
+                        </button>
+                        <button class="btn btn-tab" id="btnNoWrap" title="No Wrap">
+                            <i class="ph ph-arrows-out-line-horizontal"></i> No Wrap
+                        </button>
+                    </div>
+
+                    <div class="view-toggles">
+                        <button class="btn btn-tab active" id="btnCodeFont" title="Monospace Font">
+                            <i class="ph ph-code"></i> Code Font
+                        </button>
+                        <button class="btn btn-tab" id="btnDocFont" title="Sans-Serif Font">
+                            <i class="ph ph-text-aa"></i> Doc Font
+                        </button>
+                    </div>
+
+                    <div class="view-toggles">
+                        <button class="btn btn-tab active" id="btnShowLines" title="Show Line Numbers">
+                            <i class="ph ph-list-numbers"></i> Lines
+                        </button>
+                        <button class="btn btn-tab" id="btnHideLines" title="Hide Line Numbers">
+                            <i class="ph ph-text-align-left"></i> No Lines
+                        </button>
+                    </div>
+                </div>
+
+                <div class="action-bar-right">
+                    <button class="btn btn-tab" id="btnToggleInputs" style="display: none;" title="Toggle Inputs View">
+                        <i class="ph ph-arrows-in-line-vertical"></i> Hide Inputs
+                    </button>
+
+                    <div class="export-dropdown" id="exportDropdownContainer" style="display: none;">
+                        <button class="btn btn-secondary" id="btnExportMenu">
+                            <i class="ph ph-export"></i> Export <i class="ph ph-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="exportMenuContent">
+                            <button id="btnExportHTML"><i class="ph ph-file-html"></i> Export Interactive HTML</button>
+                            <button id="btnExportPDF"><i class="ph ph-file-pdf"></i> Export to PDF (Print)</button>
+                            <button id="btnExportWord"><i class="ph ph-file-doc"></i> Export to Word (.doc)</button>
+                            <button id="btnExportPatch"><i class="ph ph-file-code"></i> Export Git Patch (.diff)</button>
+                        </div>
+                    </div>
+
+                    <button id="compareBtn" class="btn btn-primary">
+                        <i class="ph ph-arrows-left-right"></i> Compare Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section class="results-section hidden" id="resultsSection">
+            <div class="panel diff-panel">
+                <div id="diffOutput"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Licensing & Trial Overlay Modal -->
+    <div id="licenseModal" class="license-modal hidden">
+        <div class="license-card">
+            <div class="license-logo">
+                <span class="company-name-modal">TØMASS LIMITED</span>
+                <h2>TrueDiff Pro</h2>
+                <p class="license-subtitle">Secure, Privacy-First Desktop Diff Engine</p>
+            </div>
+
+            <!-- Activation Success View -->
+            <div id="activationSuccessView" class="success-view hidden">
+                <i class="ph ph-check-circle success-icon"></i>
+                <h3>Activation Successful!</h3>
+                <p>Thank you for purchasing TrueDiff Pro. Your license has been activated successfully on this machine.</p>
+                <button class="btn btn-primary btn-block" id="btnStartUsingApp">Start Using TrueDiff Pro</button>
+            </div>
+
+            <!-- Standard Activation / Trial Input View -->
+            <div id="activationInputView">
+                <p class="license-instructions" id="modalStatusText">
+                    Unlock local file support, drag-and-drop, full offline capability, and high-performance text comparisons.
+                </p>
+
+                <!-- Trial Active Status inside modal -->
+                <div id="modalTrialStatus" class="modal-trial-status hidden">
+                    <i class="ph ph-info"></i>
+                    <span>Your 7-day trial is currently active. You can continue testing or activate your full license key below.</span>
+                </div>
+
+                <!-- Trial Expired Warning -->
+                <div id="modalTrialExpired" class="modal-trial-expired hidden">
+                    <i class="ph ph-warning-circle"></i>
+                    <span>Your 7-day trial has expired. Please enter a valid license key or purchase a new one to continue using TrueDiff Pro.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="licenseEmail">Email Address</label>
+                    <input type="email" id="licenseEmail" placeholder="your@email.com" autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="licenseKey">License Key</label>
+                    <input type="text" id="licenseKey" placeholder="TD-XXXX-XXXX-XXXX-XXXX" autocomplete="off">
+                </div>
+
+                <div id="licenseErrorMsg" class="error-message hidden">
+                    Invalid license key or email. Please check your spelling and try again.
+                </div>
+
+                <div class="license-actions">
+                    <button class="btn btn-primary btn-block" id="btnActivateLicense">
+                        <i class="ph ph-lock-open" id="activateBtnIcon"></i> <span id="activateBtnText">Activate License</span>
+                    </button>
+                    
+                    <div class="actions-row">
+                        <button class="btn btn-secondary" id="btnStartTrial">
+                            <i class="ph ph-play"></i> Start 7-Day Trial
+                        </button>
+                        <button class="btn btn-secondary" id="btnBuyLicense">
+                            <i class="ph ph-shopping-bag"></i> Buy License Key
+                        </button>
+                    </div>
+
+                    <button class="btn btn-text btn-block hidden" id="btnCancelActivation">
+                        Continue Using Free Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offline Dependencies -->
+    <script src="vendor/diff.min.js"></script>
+    <script src="vendor/diff2html.min.js"></script>
+    <script src="vendor/mammoth.browser.min.js"></script>
+    <script src="vendor/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';</script>
+
+    <!-- Main JavaScript Modules -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
