@@ -24,6 +24,11 @@
                     <span class="product-name">TrueDiff</span>
                 </a>
             </div>
+            <div class="masthead-right">
+                <button id="themeToggle" class="icon-btn theme-toggle-btn" title="Toggle Theme">
+                    <i class="ph ph-sun" id="themeIcon"></i>
+                </button>
+            </div>
         </div>
         <div class="masthead-bottom">
             <nav class="masthead-nav">
@@ -62,12 +67,6 @@
                 </div>
             </div>
         </section>
-
-        <div class="utility-bar">
-            <button id="themeToggle" class="icon-btn theme-toggle-btn" title="Toggle Theme">
-                <i class="ph ph-sun" id="themeIcon"></i>
-            </button>
-        </div>
 
         <div class="main-panel">
             <div class="input-grid">
@@ -299,7 +298,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
-    <!-- Load script directly to ensure all updates reflect without build step -->
-    <script src="script.js?v=4.32"></script>
+    <!-- Load minified production script -->
+    <script src="script.min.js?v=4.32"></script>
 </body>
 </html>

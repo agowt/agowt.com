@@ -106,6 +106,7 @@ body {
 }
 
 .masthead-top {
+    position: relative;
     width: 95%;
     max-width: 100%;
     margin: 0 auto;
@@ -114,6 +115,13 @@ body {
     align-items: center;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #333333;
+}
+
+.masthead-right {
+    position: absolute;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .masthead-bottom {
@@ -171,12 +179,6 @@ body {
 .masthead-bottom .nav-divider {
     color: #666666;
     margin: 0 0.75rem;
-}
-
-.utility-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 0.5rem;
 }
 
 .theme-toggle-btn {
