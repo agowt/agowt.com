@@ -866,25 +866,27 @@ textarea:focus {
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
 }
-/* Lock line numbers into the table cell so they don't float absolutely */
+/* Lock columns into the exact 4-column grid split */
 .results-section.wrap-text col.d2h-code-side-linenumber {
     width: 4em !important;
 }
 .results-section.wrap-text col.d2h-code-side-line {
     width: calc(50% - 4em) !important;
 }
-.results-section.wrap-text .d2h-code-side-linenumber {
+.results-section.wrap-text .d2h-diff-tbody > tr > td:nth-child(1),
+.results-section.wrap-text .d2h-diff-tbody > tr > td:nth-child(3) {
+    width: 4em !important;
+    max-width: 4em !important;
+    min-width: 4em !important;
     position: static !important;
     display: table-cell !important;
-    width: 4em !important;
-    min-width: 4em !important;
-    padding: 0 0.25rem !important;
     box-sizing: border-box !important;
 }
-/* Force text columns to perfectly fill the rest of the 50/50 split */
-.results-section.wrap-text .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+.results-section.wrap-text .d2h-diff-tbody > tr > td:nth-child(2),
+.results-section.wrap-text .d2h-diff-tbody > tr > td:nth-child(4) {
     width: calc(50% - 4em) !important;
     max-width: calc(50% - 4em) !important;
+    box-sizing: border-box !important;
 }
 
 /* Word Wrap INACTIVE Rules (No Wrap Toggle is ON) */
@@ -902,19 +904,23 @@ textarea:focus {
 .results-section:not(.wrap-text) col.d2h-code-side-line {
     width: auto !important;
 }
-.results-section:not(.wrap-text) .d2h-code-side-linenumber {
+.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:nth-child(1),
+.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:nth-child(3) {
+    width: 4em !important;
+    max-width: 4em !important;
+    min-width: 4em !important;
     position: static !important;
     display: table-cell !important;
-    width: 4em !important;
-    min-width: 4em !important;
-    padding: 0 0.25rem !important;
     box-sizing: border-box !important;
 }
-.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:not(.d2h-code-side-linenumber) {
+.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:nth-child(2),
+.results-section:not(.wrap-text) .d2h-diff-tbody > tr > td:nth-child(4) {
     width: auto !important;
     max-width: none !important;
     min-width: 350px !important;
+    box-sizing: border-box !important;
 }
+
 
 /* Hide Line Numbers Toggle */
 .results-section.hide-line-numbers .d2h-file-side-diff {
@@ -977,17 +983,91 @@ textarea:focus {
     text-shadow: 0 0 1px rgba(74, 222, 128, 0.8) !important;
 }
 
+.print-header {
+    display: none;
+}
+
 /* ========================================= */
 /* PRINT / PDF EXPORT OVERRIDES             */
 /* ========================================= */
 @media print {
+    @page {
+        margin: 1.5cm !important;
+    }
+    
+    :root {
+        --bg-main: #ffffff !important;
+        --bg-panel: #ffffff !important;
+        --bg-input: #ffffff !important;
+        --bg-header: #ffffff !important;
+        --bg-titlebar: #ffffff !important;
+        
+        --border-color: #cccccc !important;
+        --border-focus: #000000 !important;
+        
+        --text-primary: #000000 !important;
+        --text-secondary: #333333 !important;
+        --text-muted: #666666 !important;
+        
+        --diff-ins-bg: rgba(52, 199, 89, 0.1) !important;
+        --diff-ins-bg-strong: rgba(52, 199, 89, 0.25) !important;
+        --diff-ins-text: #1a7f37 !important;
+        
+        --diff-del-bg: rgba(255, 59, 48, 0.1) !important;
+        --diff-del-bg-strong: rgba(255, 59, 48, 0.25) !important;
+        --diff-del-text: #cf222e !important;
+        
+        --diff-empty: #fafafa !important;
+        --diff-line-num: #888888 !important;
+    }
     html, body {
         background-color: #ffffff !important;
         color: #000000 !important;
         overflow: visible !important;
         height: auto !important;
     }
+
     
+    /* Print-Only Header Styling */
+    .print-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+        border-bottom: 1px solid #e5e5e5 !important;
+        padding-bottom: 5px !important;
+        font-size: 8pt !important;
+        color: #444444 !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    }
+    .print-header-left {
+        font-weight: 600 !important;
+    }
+    .print-header-right {
+        color: #666666 !important;
+    }
+
+    /* Highlighted word overrides to match the website's clean light-theme */
+    .d2h-dark-color-scheme del,
+    del {
+        color: #cf222e !important;
+        background-color: #ffd8d9 !important;
+        border: 1px solid rgba(255, 59, 48, 0.3) !important;
+        text-shadow: none !important;
+        padding: 0px 4px !important;
+        border-radius: 2px !important;
+    }
+    
+    .d2h-dark-color-scheme ins,
+    ins {
+        color: #1a7f37 !important;
+        background-color: #abf2bc !important;
+        border: 1px solid rgba(52, 199, 89, 0.3) !important;
+        text-shadow: none !important;
+        padding: 0px 4px !important;
+        border-radius: 2px !important;
+    }
+
     /* Hide everything except the diff results panel */
     .titlebar,
     .trial-status-bar,
@@ -1043,7 +1123,10 @@ textarea:focus {
         min-width: 100% !important;
     }
     
-    /* Line numbers and headers in print */
+    /* Compact elegant font sizes matching the locked website printout */
+    .d2h-code-line, 
+    .d2h-code-line-ctn, 
+    .d2h-code-line-prefix,
     .d2h-code-side-linenumber, 
     .d2h-diff-tbody > tr > td.d2h-code-side-linenumber, 
     .d2h-code-side-linenumber *,
@@ -1051,25 +1134,33 @@ textarea:focus {
     .d2h-diff-tbody > tr > td.d2h-info, 
     .d2h-info *, 
     .d2h-info .d2h-code-side-line {
-        color: #444444 !important;
-        font-size: 8pt !important;
+        color: #000000 !important;
+        font-size: 6pt !important;
         line-height: 1.2 !important;
     }
     
-    .d2h-code-side-linenumber, 
-    .d2h-diff-tbody > tr > td.d2h-code-side-linenumber {
-        width: 35px !important;
-        max-width: 35px !important;
+    /* Lock columns into the exact 50/50 print split, preventing edge-to-edge stretching */
+    .d2h-diff-tbody > tr > td:nth-child(1),
+    .d2h-diff-tbody > tr > td:nth-child(3) {
+        width: 4em !important;
+        max-width: 4em !important;
+        min-width: 4em !important;
         padding: 0 !important;
         text-align: center !important;
         box-sizing: border-box !important;
     }
-    
-    .d2h-code-side-line, 
-    .d2h-diff-tbody > tr > td.d2h-code-side-line {
-        width: calc(100% - 35px) !important;
-        max-width: calc(100% - 35px) !important;
+    .d2h-diff-tbody > tr > td:nth-child(2),
+    .d2h-diff-tbody > tr > td:nth-child(4) {
+        width: calc(50% - 4em) !important;
+        max-width: calc(50% - 4em) !important;
         box-sizing: border-box !important;
+    }
+    
+    col.d2h-code-side-linenumber {
+        width: 4em !important;
+    }
+    col.d2h-code-side-line {
+        width: calc(50% - 4em) !important;
     }
     
     .d2h-info, 
@@ -1133,6 +1224,30 @@ textarea:focus {
 /* DOUBLE-SAFE ACTIVE PRINTING SCREEN CLASS   */
 /* ========================================= */
 body.printing-active {
+    --bg-main: #ffffff !important;
+    --bg-panel: #ffffff !important;
+    --bg-input: #ffffff !important;
+    --bg-header: #ffffff !important;
+    --bg-titlebar: #ffffff !important;
+    
+    --border-color: #cccccc !important;
+    --border-focus: #000000 !important;
+    
+    --text-primary: #000000 !important;
+    --text-secondary: #333333 !important;
+    --text-muted: #666666 !important;
+    
+    --diff-ins-bg: rgba(52, 199, 89, 0.1) !important;
+    --diff-ins-bg-strong: rgba(52, 199, 89, 0.25) !important;
+    --diff-ins-text: #1a7f37 !important;
+    
+    --diff-del-bg: rgba(255, 59, 48, 0.1) !important;
+    --diff-del-bg-strong: rgba(255, 59, 48, 0.25) !important;
+    --diff-del-text: #cf222e !important;
+    
+    --diff-empty: #fafafa !important;
+    --diff-line-num: #888888 !important;
+
     background-color: #ffffff !important;
     color: #000000 !important;
     overflow: visible !important;
@@ -1142,6 +1257,45 @@ html:has(body.printing-active) {
     background-color: #ffffff !important;
     overflow: visible !important;
     height: auto !important;
+}
+
+
+body.printing-active .print-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding-bottom: 5px !important;
+    font-size: 8pt !important;
+    color: #444444 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+body.printing-active .print-header-left {
+    font-weight: 600 !important;
+}
+body.printing-active .print-header-right {
+    color: #666666 !important;
+}
+
+body.printing-active .d2h-dark-color-scheme del,
+body.printing-active del {
+    color: #cf222e !important;
+    background-color: #ffd8d9 !important;
+    border: 1px solid rgba(255, 59, 48, 0.3) !important;
+    text-shadow: none !important;
+    padding: 0px 4px !important;
+    border-radius: 2px !important;
+}
+
+body.printing-active .d2h-dark-color-scheme ins,
+body.printing-active ins {
+    color: #1a7f37 !important;
+    background-color: #abf2bc !important;
+    border: 1px solid rgba(52, 199, 89, 0.3) !important;
+    text-shadow: none !important;
+    padding: 0px 4px !important;
+    border-radius: 2px !important;
 }
 
 body.printing-active .titlebar,
@@ -1197,6 +1351,9 @@ body.printing-active .d2h-files-diff {
     min-width: 100% !important;
 }
 
+body.printing-active .d2h-code-line, 
+body.printing-active .d2h-code-line-ctn, 
+body.printing-active .d2h-code-line-prefix,
 body.printing-active .d2h-code-side-linenumber, 
 body.printing-active .d2h-diff-tbody > tr > td.d2h-code-side-linenumber, 
 body.printing-active .d2h-code-side-linenumber *,
@@ -1204,25 +1361,33 @@ body.printing-active .d2h-info,
 body.printing-active .d2h-diff-tbody > tr > td.d2h-info, 
 body.printing-active .d2h-info *, 
 body.printing-active .d2h-info .d2h-code-side-line {
-    color: #444444 !important;
-    font-size: 8pt !important;
+    color: #000000 !important;
+    font-size: 6pt !important;
     line-height: 1.2 !important;
 }
 
-body.printing-active .d2h-code-side-linenumber, 
-body.printing-active .d2h-diff-tbody > tr > td.d2h-code-side-linenumber {
-    width: 35px !important;
-    max-width: 35px !important;
+body.printing-active .d2h-diff-tbody > tr > td:nth-child(1),
+body.printing-active .d2h-diff-tbody > tr > td:nth-child(3) {
+    width: 4em !important;
+    max-width: 4em !important;
+    min-width: 4em !important;
     padding: 0 !important;
     text-align: center !important;
     box-sizing: border-box !important;
 }
 
-body.printing-active .d2h-code-side-line, 
-body.printing-active .d2h-diff-tbody > tr > td.d2h-code-side-line {
-    width: calc(100% - 35px) !important;
-    max-width: calc(100% - 35px) !important;
+body.printing-active .d2h-diff-tbody > tr > td:nth-child(2),
+body.printing-active .d2h-diff-tbody > tr > td:nth-child(4) {
+    width: calc(50% - 4em) !important;
+    max-width: calc(50% - 4em) !important;
     box-sizing: border-box !important;
+}
+
+body.printing-active col.d2h-code-side-linenumber {
+    width: 4em !important;
+}
+body.printing-active col.d2h-code-side-line {
+    width: calc(50% - 4em) !important;
 }
 
 body.printing-active .d2h-info, 
@@ -1284,3 +1449,4 @@ body.printing-active .d2h-del del {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
 }
+

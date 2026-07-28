@@ -483,17 +483,37 @@ document.addEventListener('click', () => {
 
 // Native Print PDF with double-safe printing-active class
 btnExportPDF.addEventListener('click', () => {
+    // Inject current date/time for elegant print header parity
+    const printDateEl = document.getElementById('printDate');
+    if (printDateEl) {
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString('en-GB') + ', ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+        printDateEl.textContent = formattedDate;
+    }
+
     document.body.classList.add('printing-active');
-    setTimeout(() => {
-        window.print();
-        setTimeout(() => {
-            document.body.classList.remove('printing-active');
-        }, 500);
-    }, 50);
+    
+    // Force two paint ticks before triggering print
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            window.print();
+            setTimeout(() => {
+                document.body.classList.remove('printing-active');
+            }, 100);
+        });
+    });
 });
+
 
 // Sync printing-active state via beforeprint and afterprint window events as fallback
 window.addEventListener('beforeprint', () => {
+    // Inject current date/time for elegant print header parity
+    const printDateEl = document.getElementById('printDate');
+    if (printDateEl) {
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString('en-GB') + ', ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+        printDateEl.textContent = formattedDate;
+    }
     document.body.classList.add('printing-active');
 });
 window.addEventListener('afterprint', () => {
@@ -655,6 +675,16 @@ function mergeDiffTables() {
         const sideDiffs = wrapper.querySelectorAll('.d2h-file-side-diff');
         if (sideDiffs.length !== 2) return;
 
+        // 1. Merge colgroup elements to expand to 4 columns
+        const leftColgroup = sideDiffs[0].querySelector('colgroup');
+        const rightColgroup = sideDiffs[1].querySelector('colgroup');
+        if (leftColgroup && rightColgroup) {
+            while (rightColgroup.firstChild) {
+                leftColgroup.appendChild(rightColgroup.firstChild);
+            }
+        }
+
+        // 2. Merge table rows
         const leftTableBody = sideDiffs[0].querySelector('tbody');
         const rightTableBody = sideDiffs[1].querySelector('tbody');
         if (!leftTableBody || !rightTableBody) return;
@@ -678,6 +708,7 @@ function mergeDiffTables() {
         sideDiffs[1].remove();
     });
 }
+
 
 // Compare button trigger
 compareBtn.addEventListener('click', generateDiff);
