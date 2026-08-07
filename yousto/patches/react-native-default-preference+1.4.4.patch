@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-native-default-preference/ios/RNDefaultPreference.m b/node_modules/react-native-default-preference/ios/RNDefaultPreference.m
+index 42b520a..45e9af4 100644
+--- a/node_modules/react-native-default-preference/ios/RNDefaultPreference.m
++++ b/node_modules/react-native-default-preference/ios/RNDefaultPreference.m
+@@ -40,7 +40,22 @@ - (NSUserDefaults *) getDefaultUser{
+                   resolve:(RCTPromiseResolveBlock)resolve
+                   reject:(__unused RCTPromiseRejectBlock)reject)
+ {
+-    resolve([[self getDefaultUser] stringForKey:key]);
++    id value = [[self getDefaultUser] objectForKey:key];
++    if (value != nil) {
++        if ([value isKindOfClass:[NSString class]]) {
++            resolve(value);
++        } else {
++            NSError *error;
++            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:value options:0 error:&error];
++            if (!error && jsonData) {
++                resolve([[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
++            } else {
++                resolve([NSNull null]);
++            }
++        }
++    } else {
++        resolve([NSNull null]);
++    }
+ }
+ 
+ RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
